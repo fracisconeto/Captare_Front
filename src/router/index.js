@@ -31,7 +31,8 @@ const router = createRouter({
       name:'cadastro',
       component:CadastroView,
 
-    }
+    },
+  
   ],
 })
 
