@@ -20,7 +20,7 @@
         <RouterLink to="/">
           <img src="../src/assets/bolsa.png" alt="captare" />
         </RouterLink>
-        <RouterLink to="/">
+        <RouterLink to="/cadastro">
           <img src="../src/assets/macho.png" alt="captare" />
         </RouterLink>
       </div>
