@@ -17,7 +17,7 @@ import RodaView from '../components/RodaView.vue';
           <img src="../assets/vela1.png" alt="vela" />
         </div>
         <div class="continer-texto">
-          <h3>Vela Aromática Bambu</h3>
+          <h3>Vela Aromática de Bambu</h3>
           <h2>R$65,00</h2>
         </div>
         <div class="container-adicionar">
