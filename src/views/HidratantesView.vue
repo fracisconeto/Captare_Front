@@ -17,7 +17,7 @@ import RodaView from '../components/RodaView.vue';
           <img src="../assets/hidratante.png" alt="vela" />
         </div>
         <div class="continer-texto">
-          <h3>Hidratante de roxo</h3>
+          <h3>Hidratante corporal</h3>
           <h2>R$65,00</h2>
         </div>
         <div class="container-adicionar">
