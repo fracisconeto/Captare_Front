@@ -3,7 +3,7 @@ import VelasView from '../views/VelasView.vue'
 import BanhoView from '../views/BanhoView.vue'
 import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
-
+import LoginView from '../views/LoginView.vue'
 
 
 const router = createRouter({
@@ -32,6 +32,12 @@ const router = createRouter({
       component:CadastroView,
 
     },
+    {
+      path: '/login',
+      name:'login',
+      component:LoginView
+
+    }
   
   ],
 })

@@ -71,7 +71,7 @@ import RodaView from '../components/RodaView.vue';
 
 /* Cada card de vela */
 .box-vela {
-  background-color: #9DC0D1;
+  background-color: #8CB3C6;
   padding: 24px;
   display: flex;
   flex-direction: column;
