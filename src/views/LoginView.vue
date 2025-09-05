@@ -1,177 +1,163 @@
 <script setup>
-import { reactive } from "vue"
+import { ref } from "vue";
 import RodaView from '../components/RodaView.vue';
 
-const form = reactive({
-  nome: "",
-  cpf: "",
-  telefone: "",
-  senha: "",
-  confirmaSenha: ""
-})
 
-const errors = reactive({
-  nome: "",
-  cpf: "",
-  telefone: "",
-  senha: "",
-  confirmaSenha: ""
-})
+const email = ref("");
+const senha = ref("");
 
-function handleSubmit() {
-  Object.keys(errors).forEach(key => (errors[key] = ""))
-  let valid = true
-
-  if (!form.nome) { errors.nome = "O nome é obrigatório."; valid = false }
-  if (!form.cpf) { errors.cpf = "O CPF é obrigatório."; valid = false }
-  if (!form.telefone) { errors.telefone = "O telefone é obrigatório."; valid = false }
-  if (!form.senha) { errors.senha = "A senha é obrigatória."; valid = false }
-  if (!form.confirmaSenha) { errors.confirmaSenha = "A confirmação de senha é obrigatória."; valid = false }
-  else if (form.senha !== form.confirmaSenha) {
-    errors.confirmaSenha = "As senhas não coincidem."
-    valid = false
-  }
-
-  if (valid) {
-    alert("Cadastro realizado com sucesso!")
-  }
-}
+const login = () => {
+  console.log("Email:", email.value);
+  console.log("Senha:", senha.value);
+  // lógica de login aqui
+};
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="page-title">Preencha as informações</h1>
+  <div class="login-page">
+    <div class="login-container">
+      <!-- Texto de boas-vindas -->
+      <div class="welcome">
+        <h1>Seja bem-vindo</h1>
+        <img src="../assets/macho.png" alt="Usuário" class="welcome-icon" />
+      </div>
 
-    <div class="card">
-      <h2>Cadastro</h2>
+      <!-- Card de login -->
+      <div class="login-box">
+        <h2>Faça seu login</h2>
 
-      <form @submit.prevent="handleSubmit" class="form">
-        <div class="form-group">
-          <input v-model="form.nome" type="text" placeholder="Nome" />
-          <p v-if="errors.nome" class="error">{{ errors.nome }}</p>
-        </div>
+        <input
+          type="email"
+          v-model="email"
+          placeholder="E-mail"
+        />
+        <input
+          type="password"
+          v-model="senha"
+          placeholder="Senha"
+        />
 
-        <div class="form-group">
-          <input v-model="form.cpf" type="text" placeholder="CPF" />
-          <p v-if="errors.cpf" class="error">{{ errors.cpf }}</p>
-        </div>
-
-        <div class="form-group">
-          <input v-model="form.telefone" type="text" placeholder="Telefone" />
-          <p v-if="errors.telefone" class="error">{{ errors.telefone }}</p>
-        </div>
-
-        <div class="form-group">
-          <input v-model="form.senha" type="password" placeholder="Senha" />
-          <p v-if="errors.senha" class="error">{{ errors.senha }}</p>
-        </div>
-
-        <div class="form-group">
-          <input v-model="form.confirmaSenha" type="password" placeholder="Confirme sua senha" />
-          <p v-if="errors.confirmaSenha" class="error">{{ errors.confirmaSenha }}</p>
-        </div>
-
-        <button type="submit">Próximo</button>
-      </form>
+        <button class="btn-login" @click="login">Login</button>
+        <RouterLink to="/cadastro">
+          <button class="btn-secondary">Não tenho cadastro</button>
+        </RouterLink>
+      </div>
     </div>
   </div>
-<hr>
+  <hr>
   <RodaView/>
+
 </template>
 
-
-
 <style scoped>
-.container {
-    
+.login-page {
+  min-height: 70vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  min-height: 85vh;
   background-color: #8CB3C6;
-
 }
 
-.page-title {
-  color: white;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  width: 100%;
-  max-width: 500px; /* card menos largo */
-  text-align: center;
-}
-
-.card h2 {
-  margin-bottom: 2rem;
-  font-size: 26px;
-  font-weight: 700;
-  color: #333;
-}
-
-.form {
+.login-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   align-items: center;
 }
 
-.form-group {
-  width: 100%;
+.welcome {
   display: flex;
-  justify-content: center; /* centraliza inputs */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 25px;
 }
 
-input {
-  width: 90%; /* inputs ocupam 90% do card */
-  max-width: 400px;
-  padding: 10px 12px;
+.welcome h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: white;
+}
+
+.welcome-icon {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1); /* deixa o ícone branco */
+}
+
+.login-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0px 6px 14px rgba(0,0,0,0.15);
+}
+
+.login-box h2 {
+  margin-bottom: 25px;
+  font-size: 22px;
+  color: #1f2d3d;
+  font-weight: 600;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 15px;
   outline: none;
-  transition: border 0.2s;
+  font-size: 15px;
 }
 
-input:focus {
-  border-color: #4f9dcf;
+.login-box input:focus {
+  border-color: #8CB3C6;
+  box-shadow: 0 0 5px rgba(127, 168, 184, 0.6);
 }
 
-button {
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+/* Garante que RouterLink (que é <a>) não fique azul ou sublinhado */
+.login-box a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Botões */
+.btn-login,
+.btn-secondary {
+  width: 70%;
+  margin: 0 auto 12px;
+  display: block;
   padding: 12px;
-  background: #444;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  text-align: center;
+  transition: background 0.3s;
 }
 
-button:hover {
-  background: #333;
+/* Botão principal */
+.btn-login {
+  background: #5D7C87;
+  color: white;
+  border: none;
+  font-size: 17px;
 }
 
-.error {
-  color: #e63946;
-  font-size: 12px;
-  margin-top: 4px;
-  text-align: left;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+.btn-login:hover {
+  background: #4c6770;
 }
+
+/* Botão secundário */
+.btn-secondary {
+  background: #dce7ec;
+  color: #444;
+  border: none;
+  font-size: 15px;
+}
+
+.btn-secondary:hover {
+  background: #c7d6dc;
+}
+
+
 </style>
