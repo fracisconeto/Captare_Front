@@ -75,7 +75,8 @@ function handleSubmit() {
       </form>
     </div>
   </div>
-<hr>
+<hr><hr>
+
   <RodaView/>
 </template>
 
