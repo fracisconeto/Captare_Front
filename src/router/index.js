@@ -4,6 +4,7 @@ import BanhoView from '../views/BanhoView.vue'
 import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
 import LoginView from '../views/LoginView.vue'
+import EnderecoView from '../views/EnderecoView.vue'
 
 
 const router = createRouter({
@@ -37,6 +38,11 @@ const router = createRouter({
       name:'login',
       component:LoginView
 
+    },
+    {
+      path:'/endereço',
+      name:'endereço',
+      component:EnderecoView
     }
   
   ],
