@@ -1,6 +1,10 @@
 <script setup>
 import { reactive } from "vue"
 import RodaView from '../components/RodaView.vue';
+import axios from "axios";
+
+axios.defaults.baseURL = "https://capatare-beck-1.onrender.com/";  
+
 
 const form = reactive({
   nome: "",
