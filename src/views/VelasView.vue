@@ -2,34 +2,36 @@
 import RodaView from '../components/RodaView.vue';
 </script>
 <template>
-  <div class="velas-container">
+   <div class="velas-container">
 
-    <!-- Título -->
-    <div class="titulo">
-      <img src="../assets/vela.png" alt="ícone vela" />
-      <h1>Velas Aromáticas</h1>
+<!-- Título -->
+<div class="titulo">
+  <img src="../assets/vela.png" alt="ícone vela" />
+  <h1>Velas Aromáticas</h1>
+</div>
+
+<!-- Lista de velas -->
+<div class="grid-velas">
+  <div class="box-vela" v-for="i in 4" :key="i">
+    <router-link :to="{ name: 'Produto' }" class="container-img">
+      <img src="../assets/vela1.png" alt="vela" />
+    </router-link>
+
+    <div class="continer-texto">
+      <h3>Vela Aromática de Bambu</h3>
+      <h2>R$65,00</h2>
     </div>
 
-    <!-- Lista de velas -->
-    <div class="grid-velas">
-      <div class="box-vela" v-for="i in 4" :key="i">
-        <div class="container-img">
-          <img src="../assets/vela1.png" alt="vela" />
-        </div>
-        <div class="continer-texto">
-          <h3>Vela Aromática de Bambu</h3>
-          <h2>R$65,00</h2>
-        </div>
-        <div class="container-adicionar">
-          <img src="../assets/coracao.png" alt="favoritar" />
-          <button class="btn-adicionar">Adicionar</button>
-        </div>
-      </div>
+    <div class="container-adicionar">
+      <img src="../assets/coracao.png" alt="favoritar" />
+      <button class="btn-adicionar">Adicionar</button>
     </div>
-
   </div>
+</div>
 
-  <RodaView/>
+</div>
+
+<RodaView />
 </template>
 
 <style scoped>
