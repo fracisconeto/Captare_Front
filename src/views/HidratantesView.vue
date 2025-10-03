@@ -14,10 +14,10 @@ import RodaView from '../components/RodaView.vue';
     <div class="grid-velas">
       <div class="box-vela" v-for="i in 4" :key="i">
         <div class="container-img">
-          <img src="../assets/hidratante.png" alt="vela" />
+          <img src="../assets/hidratante.jpg" alt="vela" />
         </div>
         <div class="continer-texto">
-          <h3>Hidratante corporal</h3>
+          <h3>Flor de Laranjeira</h3>
           <h2>R$65,00</h2>
         </div>
         <div class="container-adicionar">
