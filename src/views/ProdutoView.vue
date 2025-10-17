@@ -6,8 +6,8 @@ import RodaView from '../components/RodaView.vue';
     <!-- Galeria de imagens -->
     <div class="galeria">
       <img src="@/assets/vela1.png" alt="Foto vela 1" />
-      <img src="@/assets/vela1.png" alt="Foto vela 2" />
-      <img src="@/assets/vela1.png" alt="Foto vela 3" />
+      <img src="@/assets/vela2.png" alt="Foto vela 2" />
+      <img src="@/assets/vela3.png" alt="Foto vela 3" />
     </div>
 
     <!-- Imagem principal -->
@@ -103,7 +103,7 @@ nav ul li {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 100px;
+  width: 200px;
   padding: 60px 80px;
 }
 
@@ -150,7 +150,7 @@ nav ul li {
   line-height: 1.5;
 }
 
-/* Ações */
+
 .acoes-produto {
   display: flex;
   align-items: center;
@@ -167,6 +167,9 @@ nav ul li {
   width: 30px;
   height: 30px;
   font-weight: bold;
+  color: #0D4561;
+  background-color: #ffffff;
+  border: none;
 }
 
 .btn-adicionar {
@@ -177,7 +180,7 @@ nav ul li {
   cursor: pointer;
 }
 
-/* Frete */
+
 .frete {
   margin-top: 20px;
 }
@@ -207,11 +210,11 @@ nav ul li {
   font-weight: bold;
 }
 
-/* Favoritos */
+
 .btn-favorito {
   margin-top: 20px;
-  background-color: transparent;
-  color: #8CB3C6;
+  background-color: #8CB3C6;
+  color: #ffffff;
   border: 2px solid #8CB3C6;
   padding: 10px;
   cursor: pointer;
