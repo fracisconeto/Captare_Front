@@ -18,7 +18,7 @@ import RodaView from '../components/RodaView.vue';
     </router-link>
 
     <div class="continer-texto">
-      <h3>Vela Aromática de Bambu</h3>
+      <h3>Vela Amethyst</h3>
       <h2>R$65,00</h2>
     </div>
 

@@ -2,17 +2,17 @@
 import RodaView from '../components/RodaView.vue';
 </script>
 <template>
-  <div class="velas-container">
+  <div class="produtos-container">
 
     <!-- Título -->
     <div class="titulo">
-      <img src="../assets/creme 1.png" alt="ícone vela" />
+      <img src="../assets/creme 1.png" alt="ícone hidratante" />
       <h1>Hidratantes</h1>
     </div>
 
-    <!-- Lista de velas -->
-    <div class="grid-velas">
-      <div class="box-vela" v-for="i in 4" :key="i">
+    <!-- Lista de hidratantes -->
+    <div class="grid-produtos">
+      <div class="box-produtos" v-for="i in 4" :key="i">
         <div class="container-img">
           <img src="../assets/hidratante.jpg" alt="vela" />
         </div>
@@ -33,7 +33,7 @@ import RodaView from '../components/RodaView.vue';
 </template>
 
 <style scoped>
-.velas-container {
+.produtos-container {
   padding: 60px 80px;
   background-color: #ffffff;
   display: flex;
@@ -61,7 +61,7 @@ import RodaView from '../components/RodaView.vue';
 }
 
 /* Grid com 4 colunas */
-.grid-velas {
+.grid-produtos {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px;
@@ -69,8 +69,8 @@ import RodaView from '../components/RodaView.vue';
   max-width: 1400px;
 }
 
-/* Cada card de vela */
-.box-vela {
+/* Cada card de produto */
+.box-produtos {
   background-color: #9DC0D1;
   padding: 24px;
   display: flex;
@@ -78,13 +78,13 @@ import RodaView from '../components/RodaView.vue';
   align-items: center;
 }
 
-/* Imagem da vela */
+/* Imagem do produto */
 .container-img img {
   width: 100%;
   height: auto;
 }
 
-/* Texto da vela */
+/* Texto do produto */
 .continer-texto {
   text-align: center;
   margin: 20px 0;

@@ -3,7 +3,9 @@ import VelasView from '../views/VelasView.vue'
 import BanhoView from '../views/BanhoView.vue'
 import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
-import ProdutoView from '../views/ProdutoView.vue'
+import DetalhesVView from '../views/DetalhesVView.vue'
+import DetalhesHView from '@/views/DetalhesHView.vue'
+
 
 
 
@@ -36,7 +38,12 @@ const router = createRouter({
     {
       path: '/produto',
       name: 'Produto',
-      component: () => import('@/views/ProdutoView.vue')
+      component: () => import('@/views/DetalhesVView.vue')
+    },
+    {
+      path: '/produto',
+      name: 'Produto',
+      component: () => import('@/views/DetalhesHView.vue')
     },
   
   ],
