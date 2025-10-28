@@ -73,7 +73,8 @@ import RodaView from '../components/RodaView.vue';
 
 /* Cada card de vela */
 .box-vela {
-  background-color: #9DC0D1;
+  background-color: #ffffff;
+  border: #8CB3C6 2px solid;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -84,23 +85,25 @@ import RodaView from '../components/RodaView.vue';
 .container-img img {
   width: 100%;
   height: auto;
+  border: #8CB3C6 2px solid;
 }
 
 /* Texto da vela */
 .continer-texto {
   text-align: center;
   margin: 20px 0;
+  color: #8CB3C6;
 }
 
 .continer-texto h3 {
   font-size: 20px;
-  color: white;
+  color: #8CB3C6;
   margin-bottom: 8px;
 }
 
 .continer-texto h2 {
   font-size: 22px;
-  color: white;
+  color: #8CB3C6;
   margin: 0;
 }
 
@@ -120,7 +123,7 @@ import RodaView from '../components/RodaView.vue';
   background-color: #ffffff;
   color: #8CB3C6;
   font-weight: bold;
-  border: none;
+  border: #8CB3C6 none;
   padding: 10px 18px;
   font-size: 16px;
   cursor: pointer;

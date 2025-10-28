@@ -57,6 +57,8 @@ import RodaView from '../components/RodaView.vue';
   padding: 60px 80px;
   background-color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
+  
+  
 }
 
 /* Cabeçalho */
@@ -115,7 +117,7 @@ nav ul li {
 
 /* Imagem principal */
 .imagem-principal img {
-  width: 400px;
+  width: 600px;
   height: auto;
   padding: 60px 80px;
 }
