@@ -23,7 +23,7 @@ import RodaView from '../components/RodaView.vue';
     </div>
 
     <div class="container-adicionar">
-      <img src="../assets/coracao.png" alt="favoritar" />
+      <img src="../assets/coraçaoazul.png" alt="favoritar" />
       <button class="btn-adicionar">Adicionar</button>
     </div>
   </div>
@@ -74,11 +74,12 @@ import RodaView from '../components/RodaView.vue';
 /* Cada card de vela */
 .box-vela {
   background-color: #ffffff;
-  border: #8CB3C6 2px solid;
+  border:#8CB3C6 2px solid;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px ;
 }
 
 /* Imagem da vela */

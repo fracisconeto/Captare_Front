@@ -21,7 +21,7 @@ import RodaView from '../components/RodaView.vue';
           <h2>R$65,00</h2>
         </div>
         <div class="container-adicionar">
-          <img src="../assets/coracao.png" alt="favoritar" />
+          <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button class="btn-adicionar">Adicionar</button>
         </div>
       </div>
