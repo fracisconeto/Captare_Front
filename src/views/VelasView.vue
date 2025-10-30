@@ -4,13 +4,12 @@ import RodaView from '../components/RodaView.vue';
 <template>
   <div class="velas-container">
 
-    <!-- Título -->
     <div class="titulo">
       <img src="../assets/vela.png" alt="ícone vela" />
       <h1>Velas Aromáticas</h1>
     </div>
 
-    <!-- Lista de velas -->
+
     <div class="grid-velas">
       <div class="box-vela" v-for="i in 4" :key="i">
         <div class="container-img">
