@@ -17,7 +17,7 @@
         <RouterLink to="/">
           <img src="../src/assets/coracao.png" alt="captare" />
         </RouterLink>
-        <RouterLink to="/">
+        <RouterLink to="/carrinho">
           <img src="../src/assets/bolsa.png" alt="captare" />
         </RouterLink>
         <RouterLink to="/login">
