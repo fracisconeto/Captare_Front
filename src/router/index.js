@@ -41,13 +41,14 @@ const router = createRouter({
       component: EnderecoView,
     },
     {
-      path:'/carrinho',
-      name:'carrinho',
-      component: () => import('../views/CarrinhoView.vue')
-    },{
-      path:'/produto',
-      name:'produto',
-      component: () => import('../views/ProdutoView.vue')
+      path: '/carrinho',
+      name: 'carrinho',
+      component: () => import('../views/CarrinhoView.vue'),
+    },
+    {
+      path: '/produto/:id',
+      name: 'produto',
+      component: () => import('../views/ProdutoByIdView.vue'),
     },
   ],
 })
