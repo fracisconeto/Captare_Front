@@ -48,7 +48,6 @@ function handleSubmit() {
   }
 
   if (valid) {
-    alert('Cadastro finalizado com sucesso!')
     router.push('/') // redireciona depois de finalizar
   }
 }

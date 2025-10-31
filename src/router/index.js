@@ -5,7 +5,7 @@ import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
 import LoginView from '../views/LoginView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
-
+import PerfilView from '../views/PerfilView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,37 +21,40 @@ const router = createRouter({
       component: BanhoView,
     },
     {
-      path:'/hidratante',
-      name:'hidratante',
-      component:HidratantesView,
-
+      path: '/hidratante',
+      name: 'hidratante',
+      component: HidratantesView,
     },
 
-     {
-      path:'/cadastro',
-      name:'cadastro',
-      component:CadastroView,
-
+    {
+      path: '/cadastro',
+      name: 'cadastro',
+      component: CadastroView,
     },
     {
       path: '/login',
-      name:'login',
-      component:LoginView
-
+      name: 'login',
+      component: LoginView,
     },
     {
-      path:'/endereço',
-      name:'endereço',
-      component:EnderecoView
+      path: '/endereço',
+      name: 'endereço',
+      component: EnderecoView,
     },
     {
-      path:'/carrinho',
-      name:'carrinho',
-      component: () => import('../views/CarrinhoView.vue')
-    },{
-      path:'/produto',
-      name:'produto',
-      component: () => import('../views/ProdutoView.vue')
+      path: '/carrinho',
+      name: 'carrinho',
+      component: () => import('../views/CarrinhoView.vue'),
+    },
+    {
+      path: '/produto/:id',
+      name: 'produto',
+      component: () => import('../views/ProdutoByIdView.vue'),
+    },
+    {
+      path: '/perfil',
+      name: 'perfil',
+      component: PerfilView,
     },
   ],
 })
