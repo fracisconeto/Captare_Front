@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
+import RodaView from '../components/RodaView.vue'
+
 
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
@@ -23,7 +25,7 @@ const getVelas = async () => {
     .from('core_produto')
     .select('*')
     .eq('categoria_id', 1)
-    .limit(4)
+    .limit(8)
 
   if (error) {
     console.error('Erro ao buscar produtos:', error)
@@ -94,6 +96,7 @@ onMounted(() => getVelas())
   <!-- ======================= -->
   <!-- Carrinho Sacola (feat-17) -->
   <!-- ======================= -->
+   <RodaView />
 </template>
 
 <style scoped>

@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
 import ToastNotification from '@/components/ToastNotification.vue'
+import RodaView from '../components/RodaView.vue'
+
 
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
@@ -33,7 +35,7 @@ const getHidratantes = async () => {
     .from('core_produto')
     .select('*')
     .eq('categoria_id', 2)
-    .limit(4)
+    .limit(8)
 
   if (error) {
     console.error('Erro ao buscar produtos:', error)
@@ -65,6 +67,7 @@ const fecharToast = () => {
 onMounted(() => {
   getHidratantes()
 })
+
 </script>
 
 <template>
@@ -97,6 +100,7 @@ onMounted(() => {
       @close="fecharToast"
     />
   </div>
+  <RodaView />
 </template>
 
 <style scoped>
