@@ -1,14 +1,40 @@
 <script setup>
 import { ref } from 'vue'
-import RodaView from '../components/RodaView.vue'
+import { useRouter } from 'vue-router'
+import RodaView from '@/components/RodaView.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+const router = useRouter()
 
 const email = ref('')
 const senha = ref('')
+const erro = ref('')
+const loading = ref(false)
 
-const login = () => {
-  console.log('Email:', email.value)
-  console.log('Senha:', senha.value)
-  // lógica de login aqui
+const login = async () => {
+  if (!email.value || !senha.value) {
+    erro.value = 'Por favor, preencha todos os campos'
+    return
+  }
+
+  loading.value = true
+  erro.value = ''
+
+  try {
+    await authStore.login(email.value, senha.value)
+
+    // Verifica se o login foi bem-sucedido checando se o token existe
+    if (authStore.token) {
+      router.push('/')
+    } else {
+      erro.value = 'Email ou senha incorretos'
+    }
+  } catch (error) {
+    erro.value = error.message || 'Erro ao fazer login. Tente novamente.'
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 
@@ -25,10 +51,15 @@ const login = () => {
       <div class="login-box">
         <h2>Faça seu login</h2>
 
+        <!-- Mensagem de erro -->
+        <div v-if="erro" class="erro-msg">{{ erro }}</div>
+
         <input type="email" v-model="email" placeholder="E-mail" />
         <input type="password" v-model="senha" placeholder="Senha" />
 
-        <button class="btn-login" @click="login">Login</button>
+        <button class="btn-login" @click="login" :disabled="loading">
+          {{ loading ? 'Entrando...' : 'Login' }}
+        </button>
         <RouterLink to="/cadastro">
           <button class="btn-secondary">Não tenho cadastro</button>
         </RouterLink>
@@ -90,6 +121,16 @@ const login = () => {
   font-weight: 600;
 }
 
+.erro-msg {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border-left: 4px solid #c33;
+}
+
 .login-box input {
   width: 100%;
   padding: 12px 16px;
@@ -141,6 +182,17 @@ const login = () => {
   background: #4c6770;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(93, 124, 135, 0.4);
+}
+
+.btn-login:disabled {
+  background: #a0b5bd;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-login:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
 }
 
 /* Botão secundário */

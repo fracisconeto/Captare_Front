@@ -1,3 +1,11 @@
+<script setup>
+import { computed } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+const estaLogado = computed(() => !!authStore.token)
+</script>
+
 <template>
   <nav>
     <div class="nav-content">
@@ -20,8 +28,12 @@
         <RouterLink to="/carrinho">
           <img src="../src/assets/bolsa.png" alt="captare" />
         </RouterLink>
-        <RouterLink to="/login">
-          <img src="../src/assets/macho.png" alt="captare" />
+        <!-- Mostra perfil se logado, login se não logado -->
+        <RouterLink v-if="estaLogado" to="/perfil" title="Meu Perfil">
+          <img src="../src/assets/macho.png" alt="perfil" />
+        </RouterLink>
+        <RouterLink v-else to="/login" title="Fazer Login">
+          <img src="../src/assets/macho.png" alt="login" />
         </RouterLink>
       </div>
     </div>
@@ -36,16 +48,9 @@
   <RouterView />
 </template>
 
-
-
-
-
-
-
-
 <style scoped>
 nav {
-  background-color: #8CB3C6;
+  background-color: #8cb3c6;
   display: flex;
   flex-direction: column;
 }
@@ -87,7 +92,7 @@ nav {
 
 .links a,
 .links2 a {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
@@ -100,7 +105,7 @@ nav {
 /* Linha branca com espaço acima */
 .nav-divider {
   height: 2px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: none;
   width: 100%;
   margin: 8px 0 0 0; /* pequeno espaço acima da linha */

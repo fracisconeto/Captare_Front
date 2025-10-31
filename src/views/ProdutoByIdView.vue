@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
 import RodaView from '../components/RodaView.vue'
+import ToastNotification from '@/components/ToastNotification.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -12,6 +13,8 @@ const carrinhoStore = useCarrinhoStore()
 const produto = ref(null)
 const loading = ref(true)
 const quantidade = ref(1)
+const showToast = ref(false)
+const toastMessage = ref('')
 
 function getImageUrl(imageFileName, ext = 'png') {
   const ASSETS_BASE = '../assets'
@@ -66,7 +69,13 @@ function adicionarAoCarrinho() {
       ...produto.value,
       quantidade: quantidade.value,
     })
+    toastMessage.value = `${quantidade.value}x ${produto.value.nome} adicionado ao carrinho!`
+    showToast.value = true
   }
+}
+
+const fecharToast = () => {
+  showToast.value = false
 }
 
 onMounted(() => {
@@ -137,6 +146,13 @@ onMounted(() => {
         </div>
       </div>
     </div>
+
+    <ToastNotification
+      :show="showToast"
+      :message="toastMessage"
+      type="success"
+      @close="fecharToast"
+    />
   </div>
 
   <RodaView />

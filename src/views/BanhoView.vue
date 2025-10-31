@@ -2,9 +2,12 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
+import ToastNotification from '@/components/ToastNotification.vue'
 
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
+const showToast = ref(false)
+const toastMessage = ref('')
 
 // --- FUNÇÃO PARA RESOLUÇÃO DINÂMICA DE IMAGENS ---
 function getImageUrl(imageFileName, ext = 'png') {
@@ -43,6 +46,22 @@ const getItensDeBanho = async () => {
   }))
 }
 
+const adicionarAoCarrinho = (produto) => {
+  carrinhoStore.adicionarItem({
+    id: produto.id,
+    nome: produto.nome,
+    preco: produto.preco,
+    imgSrc: produto.imgSrc,
+    quantidade: 1,
+  })
+  toastMessage.value = `${produto.nome} adicionado ao carrinho!`
+  showToast.value = true
+}
+
+const fecharToast = () => {
+  showToast.value = false
+}
+
 onMounted(() => {
   getItensDeBanho()
 })
@@ -66,15 +85,17 @@ onMounted(() => {
         </div>
         <div class="container-adicionar">
           <img src="../assets/coracao.png" alt="favoritar" />
-          <button
-            class="btn-adicionar"
-            @click="carrinhoStore.adicionarItem({ ...produto, quantidade: 1 })"
-          >
-            Adicionar
-          </button>
+          <button class="btn-adicionar" @click="adicionarAoCarrinho(produto)">Adicionar</button>
         </div>
       </div>
     </div>
+
+    <ToastNotification
+      :show="showToast"
+      :message="toastMessage"
+      type="success"
+      @close="fecharToast"
+    />
   </div>
 </template>
 <style scoped>

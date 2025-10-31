@@ -5,6 +5,7 @@ import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
 import LoginView from '../views/LoginView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
+import PerfilView from '../views/PerfilView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,11 @@ const router = createRouter({
       path: '/produto/:id',
       name: 'produto',
       component: () => import('../views/ProdutoByIdView.vue'),
+    },
+    {
+      path: '/perfil',
+      name: 'perfil',
+      component: PerfilView,
     },
   ],
 })

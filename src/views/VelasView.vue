@@ -5,6 +5,8 @@ import { useCarrinhoStore } from '@/stores/carrinho'
 
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
+const showToast = ref(false)
+const toastMessage = ref('')
 
 function getImageUrl(imageFileName, ext = 'png') {
   const ASSETS_BASE = '../assets'
@@ -32,6 +34,22 @@ const getVelas = async () => {
     ...p,
     imgSrc: getImageUrl(p.image1, 'png'),
   }))
+}
+
+const adicionarAoCarrinho = (produto) => {
+  carrinhoStore.adicionarItem({
+    id: produto.id,
+    nome: produto.nome,
+    preco: produto.preco,
+    imgSrc: produto.imgSrc,
+    quantidade: 1,
+  })
+  toastMessage.value = `${produto.nome} adicionado ao carrinho!`
+  showToast.value = true
+}
+
+const fecharToast = () => {
+  showToast.value = false
 }
 
 onMounted(() => getVelas())
@@ -64,6 +82,13 @@ onMounted(() => getVelas())
         </div>
       </div>
     </div>
+
+    <ToastNotification
+      :show="showToast"
+      :message="toastMessage"
+      type="success"
+      @close="fecharToast"
+    />
   </div>
 
   <!-- ======================= -->
