@@ -1,40 +1,30 @@
 <script setup>
-import RodaView from '../components/RodaView.vue';
-import { reactive, computed } from "vue";
+import RodaView from '../components/RodaView.vue'
+import { useCarrinhoStore } from '@/stores/carrinho'
+const carrinhoStore = useCarrinhoStore()
 
-const produtos = reactive([
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-]);
+// =======================
+// Carrinho Sacola (feat-17)
+// =======================
+const produtos = carrinhoStore.$state.itens
 
-function aumentarQuantidade(i) {
-  produtos[i].quantidade++;
+function aumentarQuantidade(index) {
+  if (produtos[index]) {
+    produtos[index].quantidade += 1
+  }
 }
 
-function diminuirQuantidade(i) {
-  if (produtos[i].quantidade > 1) produtos[i].quantidade--;
+function diminuirQuantidade(index) {
+  if (produtos[index]) {
+    if (produtos[index].quantidade > 1) {
+      produtos[index].quantidade -= 1
+    } else {
+      carrinhoStore.removerItem(produtos[index].id)
+    }
+  }
 }
-
-const totalGeral = computed(() =>
-  produtos.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
-);
-</script><template>
+</script>
+<template>
   <div class="sacola-container">
     <h2 class="titulo">Minha Sacola</h2>
 
@@ -45,49 +35,46 @@ const totalGeral = computed(() =>
         <span class="coluna-total">Total</span>
       </div>
 
-      <div
-        class="linha-produto"
-        v-for="(item, index) in produtos"
-        :key="index"
-      >
-        <div class="coluna-produto">
-          <img :src="item.imagem" alt="Produto" class="imagem-produto" />
-          <div class="info-produto">
-            <h3 class="nome-produto">{{ item.nome }}</h3>
-            <p class="descricao">{{ item.descricao }}</p>
+      <template v-if="produtos.length > 0">
+        <div class="linha-produto" v-for="(item, index) in produtos" :key="index">
+          <div class="coluna-produto">
+            <img :src="item.imgSrc" alt="Produto" class="imagem-produto" />
+            <div class="info-produto">
+              <h3 class="nome-produto">{{ item.nome }}</h3>
+              <p class="descricao">{{ item.descricao }}</p>
+            </div>
+          </div>
+
+          <div class="coluna-quantidade">
+            <button class="botao" @click="diminuirQuantidade(index)">−</button>
+            <span class="quantidade">{{ item.quantidade }}</span>
+            <button class="botao" @click="aumentarQuantidade(index)">+</button>
+          </div>
+
+          <div class="coluna-total">
+            R$ {{ (item.preco * item.quantidade).toFixed(2).replace('.', ',') }}
           </div>
         </div>
-
-        <div class="coluna-quantidade">
-          <button class="botao" @click="diminuirQuantidade(index)">−</button>
-          <span class="quantidade">{{ item.quantidade }}</span>
-          <button class="botao" @click="aumentarQuantidade(index)">+</button>
-        </div>
-
-        <div class="coluna-total">
-          R$ {{ (item.preco * item.quantidade).toFixed(2).replace('.', ',') }}
-        </div>
+      </template>
+      <div v-else>
+        <p style="padding: 20px; text-align: center;">Seu carrinho está vazio.</p>
       </div>
     </div>
 
     <div class="total-geral">
       <span>Total geral:</span>
-      <strong>R$ {{ totalGeral.toFixed(2).replace('.', ',') }}</strong>
+      <strong>R$ {{ carrinhoStore.totalPreco().toFixed(2).replace('.', ',') }}</strong>
     </div>
 
     <button class="botao-finalizar">Finalizar compra</button>
-
-    
   </div>
-   <RodaView/>
+  <RodaView />
 </template>
-
-
 
 <style scoped>
 /* ====== Estrutura geral ====== */
 .sacola-container {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -99,7 +86,7 @@ const totalGeral = computed(() =>
 /* ====== Título ====== */
 .titulo {
   font-size: 22px;
-color: #8cb3c6;
+  color: #8cb3c6;
   margin-bottom: 25px;
   font-weight: 600;
 }
@@ -156,7 +143,7 @@ color: #8cb3c6;
   font-weight: 600;
   color: #222;
   margin: 0;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 .descricao {
@@ -164,7 +151,7 @@ color: #8cb3c6;
   color: #666;
   margin-top: 5px;
   line-height: 1.4;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Quantidade ====== */
@@ -172,7 +159,7 @@ color: #8cb3c6;
   display: flex;
   align-items: center;
   gap: 6px;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 .botao {
@@ -195,7 +182,7 @@ color: #8cb3c6;
   min-width: 20px;
   text-align: center;
   font-size: 14px;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Total por item ====== */
@@ -203,7 +190,7 @@ color: #8cb3c6;
   width: 120px;
   text-align: right;
   font-weight: 600;
- color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Total geral ====== */
@@ -240,6 +227,4 @@ color: #8cb3c6;
 }
 
 /* ====== Rodapé ====== */
-
-
 </style>

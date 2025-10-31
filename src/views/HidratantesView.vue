@@ -1,36 +1,38 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
+import { useCarrinhoStore } from '@/stores/carrinho'
 
+const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
 
 // --- FUNÇÃO PARA RESOLUÇÃO DINÂMICA DE IMAGENS ---
 function getImageUrl(imageFileName, ext = 'png') {
-  
-  const ASSETS_BASE = '../assets'; 
-  
+
+  const ASSETS_BASE = '../assets';
+
   if (!imageFileName) {
     return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href;
   }
-  
+
   const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`;
 
   if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
     return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href;
   }
-  
+
   return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href;
 }
 // ----------------------------------------------------
 
 
-const getHidratantes = async () => { 
+const getHidratantes = async () => {
   // Filtrando pela categoria_id = 2 (Hidratantes) E limitando a 8 itens
   const { data, error } = await supabase
     .from('core_produto')
     .select('*')
-    .eq('categoria_id', 2) 
-    .limit(4) 
+    .eq('categoria_id', 2)
+    .limit(4)
 
   if (error) {
     console.error('Erro ao buscar produtos:', error)
@@ -39,12 +41,12 @@ const getHidratantes = async () => {
 
   produtos.value = data.map(p => ({
     ...p,
-    imgSrc: getImageUrl(p.image1, 'png') 
+    imgSrc: getImageUrl(p.image1, 'png')
   }))
 }
 
 onMounted(() => {
-  getHidratantes() 
+  getHidratantes()
 })
 </script>
 
@@ -52,7 +54,7 @@ onMounted(() => {
 <template>
   <div class="velas-container">
     <div class="titulo">
-      <img src="../assets/bubbles.png" alt="ícone hidratante" /> 
+      <img src="../assets/bubbles.png" alt="ícone hidratante" />
       <h1>Hidratantes Corporais</h1>
     </div>
 
@@ -67,7 +69,7 @@ onMounted(() => {
         </div>
         <div class="container-adicionar">
           <img src="../assets/coracao.png" alt="favoritar" />
-          <button class="btn-adicionar">Adicionar</button>
+          <button class="btn-adicionar" @click="carrinhoStore.adicionarItem({ ...produto, quantidade: 1 })">Adicionar</button>
         </div>
       </div>
     </div>
