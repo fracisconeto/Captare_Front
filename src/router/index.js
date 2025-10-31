@@ -5,7 +5,7 @@ import HidratantesView from '../views/HidratantesView.vue'
 import CadastroView from '../views/CadastroView.vue'
 import LoginView from '../views/LoginView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
-import PerfilView from '../views/PerfilView.vue'
+import PerfilView from '../views/PerfilView.vue' // ✅ mantido da dev
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +25,6 @@ const router = createRouter({
       name: 'hidratante',
       component: HidratantesView,
     },
-
     {
       path: '/cadastro',
       name: 'cadastro',
