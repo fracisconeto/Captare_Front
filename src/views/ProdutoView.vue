@@ -1,11 +1,8 @@
 <script setup>
 //pagina específica do produto
-import { useCarrinhoStore } from '@/stores/carrinho'
-const carrinhoStore = useCarrinhoStore()
-
-
+// import { useCarrinhoStore } from '@/stores/carrinho'
+// const carrinhoStore = useCarrinhoStore()
 </script>
-
 
 <template>
   <div class="produto-view-container">
@@ -13,4 +10,3 @@ const carrinhoStore = useCarrinhoStore()
     <!-- Conteúdo específico do produto será adicionado aqui -->
   </div>
 </template>
-

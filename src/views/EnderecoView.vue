@@ -1,40 +1,55 @@
 <script setup>
-import { reactive } from "vue"
-import RodaView from '../components/RodaView.vue';
-import { useRouter } from "vue-router"
+import { reactive } from 'vue'
+import RodaView from '../components/RodaView.vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const form = reactive({
-  cep: "",
-  rua: "",
-  numero: "",
-  cidade: "",
-  bairro: "",
-  complemento: ""
+  cep: '',
+  rua: '',
+  numero: '',
+  cidade: '',
+  bairro: '',
+  complemento: '',
 })
 
 const errors = reactive({
-  cep: "",
-  rua: "",
-  numero: "",
-  cidade: "",
-  bairro: ""
+  cep: '',
+  rua: '',
+  numero: '',
+  cidade: '',
+  bairro: '',
 })
 
 function handleSubmit() {
-  Object.keys(errors).forEach(key => (errors[key] = ""))
+  Object.keys(errors).forEach((key) => (errors[key] = ''))
   let valid = true
 
-  if (!form.cep) { errors.cep = "O CEP é obrigatório."; valid = false }
-  if (!form.rua) { errors.rua = "A rua é obrigatória."; valid = false }
-  if (!form.numero) { errors.numero = "O número é obrigatório."; valid = false }
-  if (!form.cidade) { errors.cidade = "A cidade é obrigatória."; valid = false }
-  if (!form.bairro) { errors.bairro = "O bairro é obrigatório."; valid = false }
+  if (!form.cep) {
+    errors.cep = 'O CEP é obrigatório.'
+    valid = false
+  }
+  if (!form.rua) {
+    errors.rua = 'A rua é obrigatória.'
+    valid = false
+  }
+  if (!form.numero) {
+    errors.numero = 'O número é obrigatório.'
+    valid = false
+  }
+  if (!form.cidade) {
+    errors.cidade = 'A cidade é obrigatória.'
+    valid = false
+  }
+  if (!form.bairro) {
+    errors.bairro = 'O bairro é obrigatório.'
+    valid = false
+  }
 
   if (valid) {
-    alert("Cadastro finalizado com sucesso!")
-    router.push("/") // redireciona depois de finalizar
+    alert('Cadastro finalizado com sucesso!')
+    router.push('/') // redireciona depois de finalizar
   }
 }
 </script>
@@ -86,7 +101,7 @@ function handleSubmit() {
     </div>
   </div>
 
-  <RodaView/>
+  <RodaView />
 </template>
 
 <style scoped>
@@ -96,7 +111,7 @@ function handleSubmit() {
   justify-content: center;
   align-items: center;
   min-height: 85vh;
-  background-color: #8CB3C6;
+  background-color: #8cb3c6;
 }
 
 .page-title {
@@ -110,8 +125,8 @@ function handleSubmit() {
 .card {
   background: white;
   padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 500px;
   text-align: center;
@@ -140,16 +155,18 @@ function handleSubmit() {
 input {
   width: 90%;
   max-width: 400px;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
   font-size: 15px;
   outline: none;
-  transition: border 0.2s;
+  transition: all 0.3s ease;
 }
 
 input:focus {
-  border-color: #4f9dcf;
+  border-color: #8cb3c6;
+  box-shadow: 0 0 8px rgba(140, 179, 198, 0.4);
+  transform: translateY(-2px);
 }
 
 .buttons {
@@ -166,31 +183,35 @@ button {
   max-width: 320px;
   padding: 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 17px;
   font-weight: 700;
   cursor: pointer;
   color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.25);
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 /* Voltar */
 .btn-secondary {
- color: #0D4561;
-  background: #8CB3C6;
+  color: #0d4561;
+  background: #8cb3c6;
 }
 
 .btn-secondary:hover {
   background: #7498a9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(140, 179, 198, 0.4);
 }
 
 .btn-primary {
-  background: #0D4561;
+  background: #0d4561;
 }
 
 .btn-primary:hover {
   background: #0a364d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(13, 69, 97, 0.4);
 }
 
 .error {
@@ -203,5 +224,3 @@ button {
   margin-right: auto;
 }
 </style>
-
-

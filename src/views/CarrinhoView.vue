@@ -57,7 +57,7 @@ function diminuirQuantidade(index) {
         </div>
       </template>
       <div v-else>
-        <p style="padding: 20px; text-align: center;">Seu carrinho está vazio.</p>
+        <p style="padding: 20px; text-align: center">Seu carrinho está vazio.</p>
       </div>
     </div>
 
@@ -96,10 +96,10 @@ function diminuirQuantidade(index) {
   width: 90%;
   max-width: 1000px;
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(140, 179, 198, 0.15);
 }
 
 .linha-cabecalho {
@@ -132,6 +132,7 @@ function diminuirQuantidade(index) {
   height: 90px;
   border-radius: 10px;
   object-fit: cover;
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.2);
 }
 
 .info-produto {
@@ -164,18 +165,22 @@ function diminuirQuantidade(index) {
 
 .botao {
   background-color: #e7f3f7;
-  border: 1px solid #8cb3c6;
+  border: 2px solid #8cb3c6;
   color: #8cb3c6;
-  width: 28px;
-  height: 28px;
-  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .botao:hover {
   background-color: #8cb3c6;
   color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
 }
 
 .quantidade {
@@ -215,15 +220,19 @@ function diminuirQuantidade(index) {
   background-color: #8cb3c6;
   color: white;
   border: none;
-  padding: 12px 35px;
-  border-radius: 5px;
+  padding: 14px 40px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.2s;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(140, 179, 198, 0.3);
 }
 
 .botao-finalizar:hover {
   background-color: #7aa2b5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(140, 179, 198, 0.4);
 }
 
 /* ====== Rodapé ====== */

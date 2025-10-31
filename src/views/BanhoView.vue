@@ -78,7 +78,6 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
-/* Seu CSS permanece igual */
 .velas-container {
   padding: 60px 80px;
   background-color: #fff;
@@ -114,10 +113,13 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
 }
 .container-img img {
   width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 .continer-texto {
   text-align: center;
@@ -150,5 +152,12 @@ onMounted(() => {
   padding: 10px 18px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-adicionar:hover {
+  background-color: #8cb3c6;
+  color: white;
+  border: 1px solid white;
 }
 </style>
