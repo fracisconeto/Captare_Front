@@ -74,7 +74,7 @@ onMounted(() => getVelas())
           <h2>R$ {{ produto.preco }}</h2>
         </div>
         <div class="container-adicionar">
-          <img src="../assets/coracao.png" alt="favoritar" />
+          <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button
             class="btn-adicionar"
             @click="carrinhoStore.adicionarItem({ ...produto, quantidade: 1 })"
@@ -113,11 +113,13 @@ onMounted(() => getVelas())
   align-items: center;
   gap: 16px;
   margin-bottom: 48px;
+  color: #8cb3c6;
 }
 
 .titulo img {
   width: 40px;
   height: 40px;
+  color: #8cb3c6;
 }
 
 .titulo h1 {
@@ -135,28 +137,31 @@ onMounted(() => getVelas())
 }
 
 .box-vela {
-  background-color: #8cb3c6;
+  background-color: #ffffff;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
+  border: #8cb3c6 2px solid;
 }
 .container-img img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  border: #8cb3c6 1px solid;
 }
 
 .continer-texto {
   text-align: center;
   margin: 20px 0;
+  color: #8cb3c6;
 }
 
 .continer-texto h3 {
   font-size: 20px;
-  color: white;
+  color: #8cb3c6;
   margin-bottom: 8px;
   cursor: pointer;
   transition: opacity 0.3s ease;
@@ -167,7 +172,7 @@ onMounted(() => getVelas())
 
 .continer-texto h2 {
   font-size: 22px;
-  color: white;
+  color: #8cb3c6;
   margin: 0;
 }
 
@@ -175,6 +180,7 @@ onMounted(() => getVelas())
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #8cb3c6;
 }
 
 .container-adicionar img {

@@ -86,7 +86,7 @@ onMounted(() => {
           <h2>R$ {{ produto.preco }}</h2>
         </div>
         <div class="container-adicionar">
-          <img src="../assets/coracao.png" alt="favoritar" />
+          <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button class="btn-adicionar" @click="adicionarAoCarrinho(produto)">Adicionar</button>
         </div>
       </div>
@@ -118,6 +118,7 @@ onMounted(() => {
 .titulo img {
   width: 40px;
   height: 40px;
+  color: #8cb3c6;
 }
 .titulo h1 {
   font-size: 36px;
@@ -132,17 +133,20 @@ onMounted(() => {
   max-width: 1400px;
 }
 .box-vela {
-  background-color: #8cb3c6;
+  background-color: #fff;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
+  border: #8cb3c6 1px solid;
 }
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
+  border: #8cb3c6 1px solid;
+  border-radius: 8px;
 }
 .container-img:hover {
   transform: scale(1.05);
@@ -155,10 +159,11 @@ onMounted(() => {
 .continer-texto {
   text-align: center;
   margin: 20px 0;
+  color: #8cb3c6;
 }
 .continer-texto h3 {
   font-size: 20px;
-  color: white;
+  color: #8cb3c6;
   margin-bottom: 8px;
   cursor: pointer;
   transition: opacity 0.3s ease;
@@ -168,13 +173,14 @@ onMounted(() => {
 }
 .continer-texto h2 {
   font-size: 22px;
-  color: white;
+  color: #8cb3c6;
   margin: 0;
 }
 .container-adicionar {
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #8cb3c6;
 }
 .container-adicionar img {
   width: 28px;
