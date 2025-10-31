@@ -1,40 +1,30 @@
 <script setup>
-import RodaView from '../components/RodaView.vue';
-import { reactive, computed } from "vue";
+import RodaView from '../components/RodaView.vue'
+import { useCarrinhoStore } from '@/stores/carrinho'
+const carrinhoStore = useCarrinhoStore()
 
-const produtos = reactive([
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-]);
+// =======================
+// Carrinho Sacola (feat-17)
+// =======================
+const produtos = carrinhoStore.$state.itens
 
-function aumentarQuantidade(i) {
-  produtos[i].quantidade++;
+function aumentarQuantidade(index) {
+  if (produtos[index]) {
+    produtos[index].quantidade += 1
+  }
 }
 
-function diminuirQuantidade(i) {
-  if (produtos[i].quantidade > 1) produtos[i].quantidade--;
+function diminuirQuantidade(index) {
+  if (produtos[index]) {
+    if (produtos[index].quantidade > 1) {
+      produtos[index].quantidade -= 1
+    } else {
+      carrinhoStore.removerItem(produtos[index].id)
+    }
+  }
 }
-
-const totalGeral = computed(() =>
-  produtos.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
-);
-</script><template>
+</script>
+<template>
   <div class="sacola-container">
     <h2 class="titulo">Minha Sacola</h2>
 
@@ -45,49 +35,46 @@ const totalGeral = computed(() =>
         <span class="coluna-total">Total</span>
       </div>
 
-      <div
-        class="linha-produto"
-        v-for="(item, index) in produtos"
-        :key="index"
-      >
-        <div class="coluna-produto">
-          <img :src="item.imagem" alt="Produto" class="imagem-produto" />
-          <div class="info-produto">
-            <h3 class="nome-produto">{{ item.nome }}</h3>
-            <p class="descricao">{{ item.descricao }}</p>
+      <template v-if="produtos.length > 0">
+        <div class="linha-produto" v-for="(item, index) in produtos" :key="index">
+          <div class="coluna-produto">
+            <img :src="item.imgSrc" alt="Produto" class="imagem-produto" />
+            <div class="info-produto">
+              <h3 class="nome-produto">{{ item.nome }}</h3>
+              <p class="descricao">{{ item.descricao }}</p>
+            </div>
+          </div>
+
+          <div class="coluna-quantidade">
+            <button class="botao" @click="diminuirQuantidade(index)">−</button>
+            <span class="quantidade">{{ item.quantidade }}</span>
+            <button class="botao" @click="aumentarQuantidade(index)">+</button>
+          </div>
+
+          <div class="coluna-total">
+            R$ {{ (item.preco * item.quantidade).toFixed(2).replace('.', ',') }}
           </div>
         </div>
-
-        <div class="coluna-quantidade">
-          <button class="botao" @click="diminuirQuantidade(index)">−</button>
-          <span class="quantidade">{{ item.quantidade }}</span>
-          <button class="botao" @click="aumentarQuantidade(index)">+</button>
-        </div>
-
-        <div class="coluna-total">
-          R$ {{ (item.preco * item.quantidade).toFixed(2).replace('.', ',') }}
-        </div>
+      </template>
+      <div v-else>
+        <p style="padding: 20px; text-align: center">Seu carrinho está vazio.</p>
       </div>
     </div>
 
     <div class="total-geral">
       <span>Total geral:</span>
-      <strong>R$ {{ totalGeral.toFixed(2).replace('.', ',') }}</strong>
+      <strong>R$ {{ carrinhoStore.totalPreco().toFixed(2).replace('.', ',') }}</strong>
     </div>
 
     <button class="botao-finalizar">Finalizar compra</button>
-
-    
   </div>
-   <RodaView/>
+  <RodaView />
 </template>
-
-
 
 <style scoped>
 /* ====== Estrutura geral ====== */
 .sacola-container {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -99,7 +86,7 @@ const totalGeral = computed(() =>
 /* ====== Título ====== */
 .titulo {
   font-size: 22px;
-color: #8cb3c6;
+  color: #8cb3c6;
   margin-bottom: 25px;
   font-weight: 600;
 }
@@ -109,10 +96,10 @@ color: #8cb3c6;
   width: 90%;
   max-width: 1000px;
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(140, 179, 198, 0.15);
 }
 
 .linha-cabecalho {
@@ -145,6 +132,7 @@ color: #8cb3c6;
   height: 90px;
   border-radius: 10px;
   object-fit: cover;
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.2);
 }
 
 .info-produto {
@@ -156,7 +144,7 @@ color: #8cb3c6;
   font-weight: 600;
   color: #222;
   margin: 0;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 .descricao {
@@ -164,7 +152,7 @@ color: #8cb3c6;
   color: #666;
   margin-top: 5px;
   line-height: 1.4;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Quantidade ====== */
@@ -172,30 +160,34 @@ color: #8cb3c6;
   display: flex;
   align-items: center;
   gap: 6px;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 .botao {
   background-color: #e7f3f7;
-  border: 1px solid #8cb3c6;
+  border: 2px solid #8cb3c6;
   color: #8cb3c6;
-  width: 28px;
-  height: 28px;
-  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .botao:hover {
   background-color: #8cb3c6;
   color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
 }
 
 .quantidade {
   min-width: 20px;
   text-align: center;
   font-size: 14px;
-   color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Total por item ====== */
@@ -203,7 +195,7 @@ color: #8cb3c6;
   width: 120px;
   text-align: right;
   font-weight: 600;
- color: #8cb3c6;
+  color: #8cb3c6;
 }
 
 /* ====== Total geral ====== */
@@ -228,18 +220,20 @@ color: #8cb3c6;
   background-color: #8cb3c6;
   color: white;
   border: none;
-  padding: 12px 35px;
-  border-radius: 5px;
+  padding: 14px 40px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.2s;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(140, 179, 198, 0.3);
 }
 
 .botao-finalizar:hover {
   background-color: #7aa2b5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(140, 179, 198, 0.4);
 }
 
 /* ====== Rodapé ====== */
-
-
 </style>
