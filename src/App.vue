@@ -8,7 +8,7 @@
       </div>
 
       <div class="logo-nav">
-        <RouterLink to="/vela">
+        <RouterLink to="/">
           <img src="../src/assets/Captare.png" alt="captare" />
         </RouterLink>
       </div>
@@ -28,7 +28,7 @@
 
     <!-- Linha branca visível -->
     <hr class="nav-divider" />
-    
+
     <!-- Espaço azul após a linha -->
     <div class="nav-bottom-space"></div>
   </nav>
