@@ -71,11 +71,14 @@ function handleSubmit() {
           <p v-if="errors.confirmaSenha" class="error">{{ errors.confirmaSenha }}</p>
         </div>
 
+         <RouterLink to="/endereço">
         <button type="submit">Próximo</button>
+        </RouterLink>
       </form>
     </div>
   </div>
-<hr>
+<hr><hr>
+
   <RodaView/>
 </template>
 

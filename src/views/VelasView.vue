@@ -1,49 +1,75 @@
 <script setup>
-import RodaView from '../components/RodaView.vue';
+import { ref, onMounted } from 'vue'
+import { supabase } from '../plugins/supabase'
+
+const produtos = ref([])
+
+function getImageUrl(imageFileName, ext = 'png') {
+  const ASSETS_BASE = '../assets'
+  if (!imageFileName) return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href
+  const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`
+  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
+    return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href
+  }
+  return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href
+}
+
+const getVelas = async () => {
+  const { data, error } = await supabase
+    .from('core_produto')
+    .select('*')
+    .eq('categoria_id', 1)
+    .limit(4)
+
+  if (error) {
+    console.error('Erro ao buscar produtos:', error)
+    return
+  }
+
+  produtos.value = data.map(p => ({
+    ...p,
+    imgSrc: getImageUrl(p.image1, 'png')
+  }))
+}
+
+onMounted(() => getVelas())
 </script>
+
 <template>
-   <div class="velas-container">
-
-<!-- Título -->
-<div class="titulo">
-  <img src="../assets/vela.png" alt="ícone vela" />
-  <h1>Velas Aromáticas</h1>
-</div>
-
-<!-- Lista de velas -->
-<div class="grid-velas">
-  <div class="box-vela" v-for="i in 4" :key="i">
-    <router-link :to="{ name: 'Produto' }" class="container-img">
-      <img src="../assets/vela1.png" alt="vela" />
-    </router-link>
-
-    <div class="continer-texto">
-      <h3>Vela Amethyst</h3>
-      <h2>R$65,00</h2>
+  <div class="velas-container">
+    <div class="titulo">
+      <img src="../assets/bubbles.png" alt="ícone vela" />
+      <h1>Velas Aromáticas</h1>
     </div>
 
-    <div class="container-adicionar">
-      <img src="../assets/coraçaoazul.png" alt="favoritar" />
-      <button class="btn-adicionar">Adicionar</button>
+    <div class="grid-velas">
+      <div v-for="produto in produtos" :key="produto.id" class="box-vela">
+        <div class="container-img">
+          <img :src="produto.imgSrc" :alt="produto.nome" />
+        </div>
+        <div class="continer-texto">
+          <h3>{{ produto.nome }}</h3>
+          <h2>R$ {{ produto.preco }}</h2>
+        </div>
+        <div class="container-adicionar">
+          <img src="../assets/coracao.png" alt="favoritar" />
+          <button class="btn-adicionar">Adicionar</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-</div>
-
-<RodaView />
 </template>
 
 <style scoped>
 .velas-container {
   padding: 60px 80px;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
 }
 
-/* Título centralizado */
 .titulo {
   display: flex;
   align-items: center;
@@ -62,7 +88,6 @@ import RodaView from '../components/RodaView.vue';
   font-weight: 600;
 }
 
-/* Grid com 4 colunas */
 .grid-velas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -71,44 +96,39 @@ import RodaView from '../components/RodaView.vue';
   max-width: 1400px;
 }
 
-/* Cada card de vela */
 .box-vela {
-  background-color: #ffffff;
-  border:#8CB3C6 2px solid;
+  background-color: #8CB3C6;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px ;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
 }
 
-/* Imagem da vela */
 .container-img img {
   width: 100%;
   height: auto;
-  border: #8CB3C6 2px solid;
+  border-radius: 8px;
 }
 
-/* Texto da vela */
 .continer-texto {
   text-align: center;
   margin: 20px 0;
-  color: #8CB3C6;
 }
 
 .continer-texto h3 {
   font-size: 20px;
-  color: #8CB3C6;
+  color: white;
   margin-bottom: 8px;
 }
 
 .continer-texto h2 {
   font-size: 22px;
-  color: #8CB3C6;
+  color: white;
   margin: 0;
 }
 
-/* Botão adicionar */
 .container-adicionar {
   display: flex;
   align-items: center;
@@ -121,12 +141,20 @@ import RodaView from '../components/RodaView.vue';
 }
 
 .btn-adicionar {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #8CB3C6;
   font-weight: bold;
-  border: #8CB3C6 none;
+  border: none;
   padding: 10px 18px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-adicionar:hover {
+  background-color: #8CB3C6;
+  color: white;
+  border: 1px solid white;
 }
 </style>

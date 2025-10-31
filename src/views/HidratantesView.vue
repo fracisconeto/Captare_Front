@@ -1,24 +1,65 @@
 <script setup>
-import RodaView from '../components/RodaView.vue';
-</script>
-<template>
-  <div class="produtos-container">
+import { ref, onMounted } from 'vue'
+import { supabase } from '../plugins/supabase'
 
-    <!-- Título -->
+const produtos = ref([])
+
+// --- FUNÇÃO PARA RESOLUÇÃO DINÂMICA DE IMAGENS ---
+function getImageUrl(imageFileName, ext = 'png') {
+  const ASSETS_BASE = '../assets'; 
+  
+  if (!imageFileName) {
+    return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href;
+  }
+  
+  const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`;
+
+  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
+    return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href;
+  }
+  
+  return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href;
+}
+// ----------------------------------------------------
+
+const getHidratantes = async () => { 
+  const { data, error } = await supabase
+    .from('core_produto')
+    .select('*')
+    .eq('categoria_id', 2)
+    .limit(4)
+
+  if (error) {
+    console.error('Erro ao buscar produtos:', error)
+    return
+  }
+
+  produtos.value = data.map(p => ({
+    ...p,
+    imgSrc: getImageUrl(p.image1, 'png') 
+  }))
+}
+
+onMounted(() => {
+  getHidratantes()
+})
+</script>
+
+<template>
+  <div class="velas-container">
     <div class="titulo">
-      <img src="../assets/creme 1.png" alt="ícone hidratante" />
-      <h1>Hidratantes</h1>
+      <img src="../assets/bubbles.png" alt="ícone hidratante" /> 
+      <h1>Hidratantes Corporais</h1>
     </div>
 
-    <!-- Lista de hidratantes -->
-    <div class="grid-produtos">
-      <div class="box-produtos" v-for="i in 4" :key="i">
+    <div class="grid-velas">
+      <div v-for="produto in produtos" :key="produto.id" class="box-vela">
         <div class="container-img">
-          <img src="../assets/hidratante.jpg" alt="vela" />
+          <img :src="produto.imgSrc" :alt="produto.nome" />
         </div>
         <div class="continer-texto">
-          <h3>Flor de Laranjeira</h3>
-          <h2>R$65,00</h2>
+          <h3>{{ produto.nome }}</h3>
+          <h2>R$ {{ produto.preco }}</h2>
         </div>
         <div class="container-adicionar">
           <img src="../assets/coraçaoazul.png" alt="favoritar" />
@@ -26,22 +67,18 @@ import RodaView from '../components/RodaView.vue';
         </div>
       </div>
     </div>
-
   </div>
-
-  <RodaView/>
 </template>
 
 <style scoped>
-.produtos-container {
+.velas-container {
   padding: 60px 80px;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Título centralizado */
 .titulo {
   display: flex;
   align-items: center;
@@ -60,8 +97,7 @@ import RodaView from '../components/RodaView.vue';
   font-weight: 600;
 }
 
-/* Grid com 4 colunas */
-.grid-produtos {
+.grid-velas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px;
@@ -69,43 +105,36 @@ import RodaView from '../components/RodaView.vue';
   max-width: 1400px;
 }
 
-/* Cada card de produto */
-.box-produtos {
-  background-color: #ffffff;
-  border: #8CB3C6 2px solid;
+.box-vela {
+  background-color: #8CB3C6;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Imagem do produto */
 .container-img img {
   width: 100%;
   height: auto;
 }
 
-/* Texto do produto */
 .continer-texto {
   text-align: center;
   margin: 20px 0;
-  color: #8CB3C6;
 }
 
 .continer-texto h3 {
   font-size: 20px;
-  color: #8CB3C6;
+  color: white;
   margin-bottom: 8px;
 }
 
 .continer-texto h2 {
   font-size: 22px;
-  color: #8CB3C6;
+  color: white;
   margin: 0;
-  
 }
 
-/* Botão adicionar */
 .container-adicionar {
   display: flex;
   align-items: center;
@@ -118,7 +147,7 @@ import RodaView from '../components/RodaView.vue';
 }
 
 .btn-adicionar {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #8CB3C6;
   font-weight: bold;
   border: none;
