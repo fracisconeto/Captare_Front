@@ -43,6 +43,11 @@ const router = createRouter({
       path:'/endereço',
       name:'endereço',
       component:EnderecoView
+    },
+    {
+      path:'/carrinho',
+      name:'carrinho',
+      component: () => import('../views/CarrinhoView.vue')
     }
   
   ],

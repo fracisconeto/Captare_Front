@@ -1,4 +1,40 @@
-<template>
+<script setup>
+import RodaView from '../components/RodaView.vue';
+import { reactive, computed } from "vue";
+
+const produtos = reactive([
+  {
+    nome: "Vela Amethyst",
+    descricao:
+      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
+    preco: 18.0,
+    quantidade: 1,
+    imagem:
+      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
+  },
+  {
+    nome: "Vela Amethyst",
+    descricao:
+      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
+    preco: 18.0,
+    quantidade: 1,
+    imagem:
+      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
+  },
+]);
+
+function aumentarQuantidade(i) {
+  produtos[i].quantidade++;
+}
+
+function diminuirQuantidade(i) {
+  if (produtos[i].quantidade > 1) produtos[i].quantidade--;
+}
+
+const totalGeral = computed(() =>
+  produtos.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
+);
+</script><template>
   <div class="sacola-container">
     <h2 class="titulo">Minha Sacola</h2>
 
@@ -41,59 +77,12 @@
 
     <button class="botao-finalizar">Finalizar compra</button>
 
-    <footer class="rodape">
-      <p>Cadastre-se para comentar, editar, inspecionar e outras ações.</p>
-      <div class="botoes-login">
-        <button class="btn-azul">Crie sua conta</button>
-        <button class="btn-google">
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            class="icone-google"
-          />
-          Continuar
-        </button>
-      </div>
-    </footer>
+    
   </div>
+   <RodaView/>
 </template>
 
-<script setup>
-import { reactive, computed } from "vue";
 
-const produtos = reactive([
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-  {
-    nome: "Vela Amethyst",
-    descricao:
-      "Base de cera de coco com aroma de frutas roxas e coloração lilás. Propriedades calmantes que remetem ao roxo da nossa pele",
-    preco: 18.0,
-    quantidade: 1,
-    imagem:
-      "https://cdn-icons-png.flaticon.com/512/6996/6996140.png",
-  },
-]);
-
-function aumentarQuantidade(i) {
-  produtos[i].quantidade++;
-}
-
-function diminuirQuantidade(i) {
-  if (produtos[i].quantidade > 1) produtos[i].quantidade--;
-}
-
-const totalGeral = computed(() =>
-  produtos.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
-);
-</script>
 
 <style scoped>
 /* ====== Estrutura geral ====== */
@@ -104,36 +93,36 @@ const totalGeral = computed(() =>
   flex-direction: column;
   align-items: center;
   padding: 50px 40px;
-  color: #8cb3c6;
+  color: #333;
 }
 
 /* ====== Título ====== */
 .titulo {
   font-size: 22px;
-  color: #8cb3c6;
+color: #8cb3c6;
   margin-bottom: 25px;
   font-weight: 600;
 }
 
 /* ====== Tabela ====== */
 .tabela {
-  width: 92%;
-  max-width: 1100px;
-  border: 1px solid #8cb3c6;
+  width: 90%;
+  max-width: 1000px;
+  border: 1px solid #e5e5e5;
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .linha-cabecalho {
   display: flex;
   justify-content: space-between;
-  background-color: #f9fcfd;
+  background-color: #f7f9fa;
   padding: 12px 25px;
   font-weight: 500;
   color: #8cb3c6;
-  border-bottom: 1px solid #8cb3c6;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .linha-produto {
@@ -141,7 +130,7 @@ const totalGeral = computed(() =>
   justify-content: space-between;
   align-items: center;
   padding: 18px 25px;
-  border-bottom: 1px solid #8cb3c6;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .coluna-produto {
@@ -156,7 +145,6 @@ const totalGeral = computed(() =>
   height: 90px;
   border-radius: 10px;
   object-fit: cover;
-  border: 1px solid #8cb3c6;
 }
 
 .info-produto {
@@ -166,15 +154,17 @@ const totalGeral = computed(() =>
 .nome-produto {
   font-size: 16px;
   font-weight: 600;
-  color: #8cb3c6;
+  color: #222;
   margin: 0;
+   color: #8cb3c6;
 }
 
 .descricao {
   font-size: 13px;
-  color: #8cb3c6;
+  color: #666;
   margin-top: 5px;
   line-height: 1.4;
+   color: #8cb3c6;
 }
 
 /* ====== Quantidade ====== */
@@ -182,6 +172,7 @@ const totalGeral = computed(() =>
   display: flex;
   align-items: center;
   gap: 6px;
+   color: #8cb3c6;
 }
 
 .botao {
@@ -204,7 +195,7 @@ const totalGeral = computed(() =>
   min-width: 20px;
   text-align: center;
   font-size: 14px;
-  color: #8cb3c6;
+   color: #8cb3c6;
 }
 
 /* ====== Total por item ====== */
@@ -212,18 +203,22 @@ const totalGeral = computed(() =>
   width: 120px;
   text-align: right;
   font-weight: 600;
-  color: #8cb3c6;
+ color: #8cb3c6;
 }
 
 /* ====== Total geral ====== */
 .total-geral {
-  width: 92%;
-  max-width: 1100px;
+  width: 90%;
+  max-width: 1000px;
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
   font-size: 15px;
   gap: 10px;
+  color: #8cb3c6;
+}
+
+.total-geral strong {
   color: #8cb3c6;
 }
 
@@ -245,46 +240,6 @@ const totalGeral = computed(() =>
 }
 
 /* ====== Rodapé ====== */
-.rodape {
-  margin-top: 50px;
-  width: 100%;
-  background-color: #8cb3c6;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
 
-.botoes-login {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 12px;
-}
 
-.btn-azul {
-  background-color: white;
-  color: #8cb3c6;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 5px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.btn-google {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  color: #8cb3c6;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 5px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.icone-google {
-  width: 16px;
-  margin-right: 6px;
-}
 </style>
