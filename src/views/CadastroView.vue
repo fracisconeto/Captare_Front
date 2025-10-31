@@ -1,39 +1,53 @@
 <script setup>
-import { reactive } from "vue"
-import RodaView from '../components/RodaView.vue';
+import { reactive } from 'vue'
+import RodaView from '../components/RodaView.vue'
 
 const form = reactive({
-  nome: "",
-  cpf: "",
-  telefone: "",
-  senha: "",
-  confirmaSenha: ""
+  nome: '',
+  cpf: '',
+  telefone: '',
+  senha: '',
+  confirmaSenha: '',
 })
 
 const errors = reactive({
-  nome: "",
-  cpf: "",
-  telefone: "",
-  senha: "",
-  confirmaSenha: ""
+  nome: '',
+  cpf: '',
+  telefone: '',
+  senha: '',
+  confirmaSenha: '',
 })
 
 function handleSubmit() {
-  Object.keys(errors).forEach(key => (errors[key] = ""))
+  Object.keys(errors).forEach((key) => (errors[key] = ''))
   let valid = true
 
-  if (!form.nome) { errors.nome = "O nome é obrigatório."; valid = false }
-  if (!form.cpf) { errors.cpf = "O CPF é obrigatório."; valid = false }
-  if (!form.telefone) { errors.telefone = "O telefone é obrigatório."; valid = false }
-  if (!form.senha) { errors.senha = "A senha é obrigatória."; valid = false }
-  if (!form.confirmaSenha) { errors.confirmaSenha = "A confirmação de senha é obrigatória."; valid = false }
-  else if (form.senha !== form.confirmaSenha) {
-    errors.confirmaSenha = "As senhas não coincidem."
+  if (!form.nome) {
+    errors.nome = 'O nome é obrigatório.'
+    valid = false
+  }
+  if (!form.cpf) {
+    errors.cpf = 'O CPF é obrigatório.'
+    valid = false
+  }
+  if (!form.telefone) {
+    errors.telefone = 'O telefone é obrigatório.'
+    valid = false
+  }
+  if (!form.senha) {
+    errors.senha = 'A senha é obrigatória.'
+    valid = false
+  }
+  if (!form.confirmaSenha) {
+    errors.confirmaSenha = 'A confirmação de senha é obrigatória.'
+    valid = false
+  } else if (form.senha !== form.confirmaSenha) {
+    errors.confirmaSenha = 'As senhas não coincidem.'
     valid = false
   }
 
   if (valid) {
-    alert("Cadastro realizado com sucesso!")
+    alert('Cadastro realizado com sucesso!')
   }
 }
 </script>
@@ -71,26 +85,26 @@ function handleSubmit() {
           <p v-if="errors.confirmaSenha" class="error">{{ errors.confirmaSenha }}</p>
         </div>
 
-        <button type="submit">Próximo</button>
+        <RouterLink to="/endereço">
+          <button type="submit">Próximo</button>
+        </RouterLink>
       </form>
     </div>
   </div>
-<hr>
-  <RodaView/>
+  <hr />
+  <hr />
+
+  <RodaView />
 </template>
-
-
 
 <style scoped>
 .container {
-    
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 85vh;
-  background-color: #8CB3C6;
-
+  background-color: #8cb3c6;
 }
 
 .page-title {
@@ -104,10 +118,10 @@ function handleSubmit() {
 .card {
   background: white;
   padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 500px; /* card menos largo */
+  max-width: 500px;
   text-align: center;
 }
 
@@ -132,18 +146,20 @@ function handleSubmit() {
 }
 
 input {
-  width: 90%; /* inputs ocupam 90% do card */
+  width: 90%;
   max-width: 400px;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
   font-size: 15px;
   outline: none;
-  transition: border 0.2s;
+  transition: all 0.3s ease;
 }
 
 input:focus {
-  border-color: #4f9dcf;
+  border-color: #8cb3c6;
+  box-shadow: 0 0 8px rgba(140, 179, 198, 0.4);
+  transform: translateY(-2px);
 }
 
 button {
@@ -151,18 +167,21 @@ button {
   max-width: 300px;
   margin: 0 auto;
   padding: 12px;
-  background: #444;
+  background: #5d7c87;
   color: white;
   font-size: 16px;
   font-weight: 600;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
 }
 
 button:hover {
-  background: #333;
+  background: #4c6770;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(93, 124, 135, 0.4);
 }
 
 .error {
