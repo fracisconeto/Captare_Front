@@ -1,8 +1,13 @@
 <script setup>
+// página específica do produto
+// import { useCarrinhoStore } from '@/stores/carrinho'
+// const carrinhoStore = useCarrinhoStore()
+
 import RodaView from '../components/RodaView.vue';
 </script>
+
 <template>
-<div class="produto-detalhes">
+  <div class="produto-detalhes">
     <!-- Galeria de imagens -->
     <div class="galeria">
       <img src="@/assets/vela1.png" alt="Foto vela 1" />
@@ -52,16 +57,14 @@ import RodaView from '../components/RodaView.vue';
   </div>
   <RodaView/>
 </template>
+
 <style scoped>
 .produto-container {
   padding: 60px 80px;
   background-color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
-  
-  
 }
 
-/* Cabeçalho */
 .top-header {
   display: flex;
   justify-content: space-between;
@@ -93,14 +96,12 @@ nav ul li {
   cursor: pointer;
 }
 
-/* Layout principal */
 .produto-detalhes {
   display: flex;
   gap: 40px;
   padding: 60px 80px;
 }
 
-/* Galeria lateral */
 .galeria {
   display: flex;
   flex-direction: column;
@@ -115,14 +116,12 @@ nav ul li {
   border: 1px solid #ccc;
 }
 
-/* Imagem principal */
 .imagem-principal img {
   width: 600px;
   height: auto;
   padding: 60px 80px;
 }
 
-/* Informações */
 .info-produto {
   flex: 1;
   display: flex;
@@ -151,7 +150,6 @@ nav ul li {
   font-size: 16px;
   line-height: 1.5;
 }
-
 
 .acoes-produto {
   display: flex;
@@ -182,7 +180,6 @@ nav ul li {
   cursor: pointer;
 }
 
-
 .frete {
   margin-top: 20px;
 }
@@ -211,7 +208,6 @@ nav ul li {
   margin-top: 8px;
   font-weight: bold;
 }
-
 
 .btn-favorito {
   margin-top: 20px;

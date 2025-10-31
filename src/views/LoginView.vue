@@ -1,16 +1,15 @@
 <script setup>
-import { ref } from "vue";
-import RodaView from '../components/RodaView.vue';
+import { ref } from 'vue'
+import RodaView from '../components/RodaView.vue'
 
-
-const email = ref("");
-const senha = ref("");
+const email = ref('')
+const senha = ref('')
 
 const login = () => {
-  console.log("Email:", email.value);
-  console.log("Senha:", senha.value);
+  console.log('Email:', email.value)
+  console.log('Senha:', senha.value)
   // lógica de login aqui
-};
+}
 </script>
 
 <template>
@@ -26,16 +25,8 @@ const login = () => {
       <div class="login-box">
         <h2>Faça seu login</h2>
 
-        <input
-          type="email"
-          v-model="email"
-          placeholder="E-mail"
-        />
-        <input
-          type="password"
-          v-model="senha"
-          placeholder="Senha"
-        />
+        <input type="email" v-model="email" placeholder="E-mail" />
+        <input type="password" v-model="senha" placeholder="Senha" />
 
         <button class="btn-login" @click="login">Login</button>
         <RouterLink to="/cadastro">
@@ -44,9 +35,8 @@ const login = () => {
       </div>
     </div>
   </div>
-  <hr>
-  <RodaView/>
-
+  <hr />
+  <RodaView />
 </template>
 
 <style scoped>
@@ -55,7 +45,7 @@ const login = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8CB3C6;
+  background-color: #8cb3c6;
 }
 
 .login-container {
@@ -87,10 +77,10 @@ const login = () => {
 .login-box {
   background: #fff;
   padding: 40px;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 360px;
   text-align: center;
-  box-shadow: 0px 6px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .login-box h2 {
@@ -102,17 +92,19 @@ const login = () => {
 
 .login-box input {
   width: 100%;
-  padding: 12px;
+  padding: 12px 16px;
   margin-bottom: 18px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
   outline: none;
   font-size: 15px;
+  transition: all 0.3s ease;
 }
 
 .login-box input:focus {
-  border-color: #8CB3C6;
-  box-shadow: 0 0 5px rgba(127, 168, 184, 0.6);
+  border-color: #8cb3c6;
+  box-shadow: 0 0 8px rgba(140, 179, 198, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Garante que RouterLink (que é <a>) não fique azul ou sublinhado */
@@ -129,22 +121,26 @@ const login = () => {
   margin: 0 auto 12px;
   display: block;
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
   text-align: center;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 /* Botão principal */
 .btn-login {
-  background: #5D7C87;
+  background: #5d7c87;
   color: white;
   border: none;
   font-size: 17px;
+  box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
 }
 
 .btn-login:hover {
   background: #4c6770;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(93, 124, 135, 0.4);
 }
 
 /* Botão secundário */
@@ -153,11 +149,12 @@ const login = () => {
   color: #444;
   border: none;
   font-size: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
   background: #c7d6dc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-
-
 </style>
