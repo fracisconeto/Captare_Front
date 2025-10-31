@@ -6,7 +6,6 @@ import CadastroView from '../views/CadastroView.vue'
 import LoginView from '../views/LoginView.vue'
 import EnderecoView from '../views/EnderecoView.vue'
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,28 +20,25 @@ const router = createRouter({
       component: BanhoView,
     },
     {
-      path:'/hidratante',
-      name:'hidratante',
-      component:HidratantesView,
-
+      path: '/hidratante',
+      name: 'hidratante',
+      component: HidratantesView,
     },
 
-     {
-      path:'/cadastro',
-      name:'cadastro',
-      component:CadastroView,
-
+    {
+      path: '/cadastro',
+      name: 'cadastro',
+      component: CadastroView,
     },
     {
       path: '/login',
-      name:'login',
-      component:LoginView
-
+      name: 'login',
+      component: LoginView,
     },
     {
-      path:'/endereço',
-      name:'endereço',
-      component:EnderecoView
+      path: '/endereço',
+      name: 'endereço',
+      component: EnderecoView,
     },
     {
       path:'/carrinho',

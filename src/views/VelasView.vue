@@ -46,11 +46,11 @@ onMounted(() => getVelas())
 
     <div class="grid-velas">
       <div v-for="produto in produtos" :key="produto.id" class="box-vela">
-        <div class="container-img">
+        <div class="container-img" @click="$router.push(`/produto/${produto.id}`)">
           <img :src="produto.imgSrc" :alt="produto.nome" />
         </div>
         <div class="continer-texto">
-          <h3>{{ produto.nome }}</h3>
+          <h3 @click="$router.push(`/produto/${produto.id}`)">{{ produto.nome }}</h3>
           <h2>R$ {{ produto.preco }}</h2>
         </div>
         <div class="container-adicionar">
@@ -115,7 +115,6 @@ onMounted(() => getVelas())
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
 }
-
 .container-img img {
   width: 100%;
   height: auto;
@@ -131,6 +130,11 @@ onMounted(() => getVelas())
   font-size: 20px;
   color: white;
   margin-bottom: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.continer-texto h3:hover {
+  opacity: 0.8;
 }
 
 .continer-texto h2 {
