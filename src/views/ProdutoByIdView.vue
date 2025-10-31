@@ -14,15 +14,19 @@ const loading = ref(true)
 const quantidade = ref(1)
 
 function getImageUrl(imageFileName, ext = 'png') {
-  const ASSETS_BASE = '../assets'
-  if (!imageFileName) return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href
-  const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`
-  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
-    return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href
-  }
-  return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href
-}
+  const PRODUTOS_DIR = '/produtos' // 👈 acessa direto a pasta public/produtos
 
+  if (!imageFileName) {
+    return `${PRODUTOS_DIR}/vela1.png`
+  }
+
+  // Se já tiver extensão (ex: .jpg ou .png)
+  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
+    return `${PRODUTOS_DIR}/${imageFileName}`
+  }
+
+  return `${PRODUTOS_DIR}/${imageFileName}.${ext}`
+}
 const getProduto = async () => {
   try {
     loading.value = true
