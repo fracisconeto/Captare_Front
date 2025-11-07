@@ -2,7 +2,6 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
-import ToastNotification from '@/components/ToastNotification.vue'
 import RodaView from '../components/RodaView.vue'
 
 
@@ -12,19 +11,18 @@ const showToast = ref(false)
 const toastMessage = ref('')
 
 function getImageUrl(imageFileName, ext = 'png') {
-  const ASSETS_BASE = '../assets'
+  const PRODUTOS_DIR = '/produtos' // 👈 acessa direto a pasta public/produtos
 
   if (!imageFileName) {
-    return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href
+    return `${PRODUTOS_DIR}/vela1.png`
   }
 
-  const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`
-
+  // Se já tiver extensão (ex: .jpg ou .png)
   if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
-    return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href
+    return `${PRODUTOS_DIR}/${imageFileName}`
   }
 
-  return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href
+  return `${PRODUTOS_DIR}/${imageFileName}.${ext}`
 }
 
 
@@ -58,13 +56,12 @@ const adicionarAoCarrinho = (produto) => {
   showToast.value = true
 }
 
+
 const fecharToast = () => {
   showToast.value = false
 }
 
-onMounted(() => {
-  getVelas()
-})
+onMounted(() => getVelas())
 </script>
 
 <template>
@@ -87,7 +84,10 @@ onMounted(() => {
           <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button
             class="btn-adicionar"
-            @click="adicionarAoCarrinho(produto)"> Adicionar</button>
+            @click="carrinhoStore.adicionarItem({ ...produto, quantidade: 1 })"
+          >
+            Adicionar
+          </button>
         </div>
       </div>
     </div>
@@ -100,6 +100,9 @@ onMounted(() => {
     />
   </div>
 
+  <!-- ======================= -->
+  <!-- Carrinho Sacola (feat-17) -->
+  <!-- ======================= -->
    <RodaView />
 </template>
 
@@ -150,19 +153,11 @@ onMounted(() => {
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
   border: #8cb3c6 2px solid;
 }
-.container-img {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border: #8cb3c6 1px solid;
-  border-radius: 8px;
-}
-.container-img:hover {
-  transform: scale(1.05);
-}
 .container-img img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  border: #8cb3c6 1px solid;
 }
 
 .continer-texto {
@@ -218,6 +213,9 @@ onMounted(() => {
   border: 1px solid white;
 }
 
+/* ======================= */
+/* Sacola (feat-17) */
+/* ======================= */
 .sacola-container {
   font-family: 'Poppins', sans-serif;
   background-color: #ffffff;
