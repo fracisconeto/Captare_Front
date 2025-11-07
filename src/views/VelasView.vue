@@ -5,12 +5,13 @@ import { useCarrinhoStore } from '@/stores/carrinho'
 import ToastNotification from '@/components/ToastNotification.vue'
 import RodaView from '../components/RodaView.vue'
 
-
+// --- STORE E VARIÁVEIS DE ESTADO ---
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
 const showToast = ref(false)
 const toastMessage = ref('')
 
+// --- FUNÇÃO PARA RESOLUÇÃO DE IMAGENS ---
 function getImageUrl(imageFileName, ext = 'png') {
   const ASSETS_BASE = '../assets'
 
@@ -27,7 +28,7 @@ function getImageUrl(imageFileName, ext = 'png') {
   return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href
 }
 
-
+// --- FUNÇÃO PARA BUSCAR VELAS (categoria_id = 1) ---
 const getVelas = async () => {
   const { data, error } = await supabase
     .from('core_produto')
@@ -46,7 +47,10 @@ const getVelas = async () => {
   }))
 }
 
+// --- ADICIONAR AO CARRINHO ---
 const adicionarAoCarrinho = (produto) => {
+  console.log('Adicionando ao carrinho:', produto.nome)
+
   carrinhoStore.adicionarItem({
     id: produto.id,
     nome: produto.nome,
@@ -54,14 +58,17 @@ const adicionarAoCarrinho = (produto) => {
     imgSrc: produto.imgSrc,
     quantidade: 1,
   })
+
   toastMessage.value = `${produto.nome} adicionado ao carrinho!`
   showToast.value = true
 }
 
+// --- FECHAR TOAST ---
 const fecharToast = () => {
   showToast.value = false
 }
 
+// --- INICIALIZAÇÃO ---
 onMounted(() => {
   getVelas()
 })
@@ -79,15 +86,20 @@ onMounted(() => {
         <div class="container-img" @click="$router.push(`/produto/${produto.id}`)">
           <img :src="produto.imgSrc" :alt="produto.nome" />
         </div>
+
         <div class="continer-texto">
           <h3 @click="$router.push(`/produto/${produto.id}`)">{{ produto.nome }}</h3>
           <h2>R$ {{ produto.preco }}</h2>
         </div>
+
         <div class="container-adicionar">
           <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button
             class="btn-adicionar"
-            @click="adicionarAoCarrinho(produto)"> Adicionar</button>
+            @click.stop="adicionarAoCarrinho(produto)"
+          >
+            Adicionar
+          </button>
         </div>
       </div>
     </div>
@@ -100,7 +112,7 @@ onMounted(() => {
     />
   </div>
 
-   <RodaView />
+  <RodaView />
 </template>
 
 <style scoped>
@@ -150,15 +162,18 @@ onMounted(() => {
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
   border: #8cb3c6 2px solid;
 }
+
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
   border: #8cb3c6 1px solid;
   border-radius: 8px;
 }
+
 .container-img:hover {
   transform: scale(1.05);
 }
+
 .container-img img {
   width: 100%;
   height: auto;
@@ -178,6 +193,7 @@ onMounted(() => {
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
 .continer-texto h3:hover {
   opacity: 0.8;
 }
@@ -216,147 +232,5 @@ onMounted(() => {
   background-color: #8cb3c6;
   color: white;
   border: 1px solid white;
-}
-
-.sacola-container {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 40px;
-  color: #8cb3c6;
-  margin-top: 60px;
-}
-
-.sacola-container .titulo {
-  font-size: 22px;
-  color: #8cb3c6;
-  margin-bottom: 25px;
-  font-weight: 600;
-}
-
-.tabela {
-  width: 92%;
-  max-width: 1100px;
-  border: 1px solid #8cb3c6;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
-}
-
-.linha-cabecalho {
-  display: flex;
-  justify-content: space-between;
-  background-color: #f9fcfd;
-  padding: 12px 25px;
-  font-weight: 500;
-  color: #8cb3c6;
-  border-bottom: 1px solid #8cb3c6;
-}
-
-.linha-produto {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 25px;
-  border-bottom: 1px solid #8cb3c6;
-}
-
-.coluna-produto {
-  display: flex;
-  align-items: center;
-  flex: 2;
-  gap: 20px;
-}
-
-.imagem-produto {
-  width: 90px;
-  height: 90px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid #8cb3c6;
-}
-
-.info-produto {
-  max-width: 400px;
-}
-
-.nome-produto {
-  font-size: 16px;
-  font-weight: 600;
-  color: #8cb3c6;
-  margin: 0;
-}
-
-.descricao {
-  font-size: 13px;
-  color: #8cb3c6;
-  margin-top: 5px;
-  line-height: 1.4;
-}
-
-.coluna-quantidade {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.botao {
-  background-color: #e7f3f7;
-  border: 1px solid #8cb3c6;
-  color: #8cb3c6;
-  width: 28px;
-  height: 28px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.botao:hover {
-  background-color: #8cb3c6;
-  color: #fff;
-}
-
-.quantidade {
-  min-width: 20px;
-  text-align: center;
-  font-size: 14px;
-  color: #8cb3c6;
-}
-
-.coluna-total {
-  width: 120px;
-  text-align: right;
-  font-weight: 600;
-  color: #8cb3c6;
-}
-
-.total-geral {
-  width: 92%;
-  max-width: 1100px;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-  font-size: 15px;
-  gap: 10px;
-  color: #8cb3c6;
-}
-
-.botao-finalizar {
-  margin-top: 25px;
-  background-color: #8cb3c6;
-  color: white;
-  border: none;
-  padding: 12px 35px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.2s;
-}
-
-.botao-finalizar:hover {
-  background-color: #7aa2b5;
 }
 </style>
