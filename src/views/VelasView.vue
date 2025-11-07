@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../plugins/supabase'
 import { useCarrinhoStore } from '@/stores/carrinho'
+import ToastNotification from '@/components/ToastNotification.vue'
 import RodaView from '../components/RodaView.vue'
 
 
@@ -11,14 +12,20 @@ const showToast = ref(false)
 const toastMessage = ref('')
 
 function getImageUrl(imageFileName, ext = 'png') {
-  const ASSETS_BASE = '../assets'
-  if (!imageFileName) return new URL(`${ASSETS_BASE}/vela1.png`, import.meta.url).href
-  const PRODUTOS_DIR = `${ASSETS_BASE}/produtos`
-  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
-    return new URL(`${PRODUTOS_DIR}/${imageFileName}`, import.meta.url).href
+  const PRODUTOS_DIR = '/produtos' // 👈 acessa direto a pasta public/produtos
+
+  if (!imageFileName) {
+    return `${PRODUTOS_DIR}/vela1.png`
   }
-  return new URL(`${PRODUTOS_DIR}/${imageFileName}.${ext}`, import.meta.url).href
+
+  // Se já tiver extensão (ex: .jpg ou .png)
+  if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
+    return `${PRODUTOS_DIR}/${imageFileName}`
+  }
+
+  return `${PRODUTOS_DIR}/${imageFileName}.${ext}`
 }
+
 
 const getVelas = async () => {
   const { data, error } = await supabase
@@ -77,7 +84,7 @@ onMounted(() => getVelas())
           <img src="../assets/coraçaoazul.png" alt="favoritar" />
           <button
             class="btn-adicionar"
-            @click="carrinhoStore.adicionarItem({ ...produto, quantidade: 1 })"
+            @click="adicionarAoCarrinho(produto)"
           >
             Adicionar
           </button>
