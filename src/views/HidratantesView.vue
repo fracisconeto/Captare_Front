@@ -74,7 +74,7 @@ onMounted(() => {
   <div class="velas-container">
     <div class="titulo">
       <img src="../assets/bubbles.png" alt="ícone hidratante" />
-      <h1>Hidratantes Corporais</h1>z
+      <h1>Hidratantes Corporais</h1>
     </div>
 
     <div class="grid-velas">
