@@ -220,4 +220,54 @@ onMounted(() => {
   color: white;
   border: 1px solid white;
 }
+@media (max-width: 1024px) {
+  .velas-container {
+    padding: 24px 8vw;
+  }
+  .grid-velas {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .velas-container {
+    padding: 10px 2vw;
+  }
+  .titulo {
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .titulo h1 {
+    font-size: 22px;
+  }
+  .titulo img {
+    width: 34px;
+    height: 34px;
+  }
+  .grid-velas {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    max-width: 99vw;
+  }
+  .box-vela {
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .container-img img {
+    max-width: 96vw;
+    border-radius: 6px;
+  }
+  .continer-texto h3,
+  .continer-texto h2 {
+    font-size: 16px;
+    margin: 6px 0;
+  }
+  .btn-adicionar {
+    font-size: 14px;
+    padding: 10px 14vw;
+  }
+}
+
 </style>

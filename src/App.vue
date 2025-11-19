@@ -115,4 +115,53 @@ nav {
 .nav-bottom-space {
   height: 22px; /* ajuste conforme o design do Figma */
 }
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .nav-content {
+    flex-direction: column;
+    padding: 0 10px;
+    height: auto;
+    min-height: 90px;
+    gap: 12px;
+  }
+
+  .links,
+  .links2 {
+    gap: 16px;
+    flex: unset;
+    justify-content: center;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .logo-nav {
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .logo-nav img {
+    height: 44px;
+  }
+
+  /* Links em fonte maior para facilitar o toque */
+  .links a,
+  .links2 a {
+    font-size: 18px;
+    padding: 6px 0;
+    line-height: 1.3;
+  }
+
+  .nav-divider {
+    margin: 14px 0 0 0;
+    height: 2px;
+  }
+
+  .nav-bottom-space {
+    height: 16px;
+  }
+}
+
 </style>

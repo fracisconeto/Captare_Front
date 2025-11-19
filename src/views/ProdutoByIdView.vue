@@ -368,4 +368,99 @@ onMounted(() => {
     font-size: 26px;
   }
 }
+@media (max-width: 600px) {
+  .produto-container {
+    padding: 12px 2vw;
+    min-height: 50vh;
+  }
+
+  .produto-detalhes {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 99vw;
+  }
+
+  .imagem-secao {
+    padding: 0;
+  }
+  .imagem-principal {
+    max-width: 98vw;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(140,179,198,0.15);
+  }
+
+  .info-secao {
+    gap: 14px;
+  }
+  .btn-voltar {
+    font-size: 15px;
+    padding: 6px 0;
+  }
+
+  .nome-produto {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+  .preco-secao {
+    padding-bottom: 12px;
+  }
+  .preco {
+    font-size: 18px;
+  }
+  .parcelamento {
+    font-size: 13px;
+  }
+
+  .descricao-secao {
+    padding: 13px;
+    border-radius: 7px;
+    border-left: 3px solid #8cb3c6;
+  }
+  .descricao-secao h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .descricao-secao p {
+    font-size: 13px;
+  }
+
+  .quantidade-secao label,
+  .quantidade-valor {
+    font-size: 15px;
+  }
+  .quantidade-controle {
+    gap: 7px;
+    padding: 7px 7px;
+    border-radius: 7px;
+  }
+  .btn-quantidade {
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+  }
+  .quantidade-valor {
+    min-width: 24px;
+  }
+
+  .btn-adicionar-carrinho {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
+    margin-top: 10px;
+  }
+
+  .info-adicional {
+    padding: 12px;
+    border-radius: 7px;
+    margin-top: 8px;
+  }
+  .info-adicional p {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+}
+
 </style>

@@ -217,4 +217,129 @@ nav ul li {
   padding: 10px;
   cursor: pointer;
 }
+@media (max-width: 1024px) {
+  .produto-container {
+    padding: 30px 8vw;
+  }
+  .produto-detalhes {
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px 0;
+  }
+  .galeria {
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+  }
+  .imagem-principal img {
+    width: 92vw;
+    max-width: 600px;
+    padding: 0;
+  }
+  .info-produto {
+    padding: 10px 0;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .produto-container {
+    padding: 10px 2vw;
+  }
+  .top-header {
+    flex-direction: column;
+    margin-bottom: 28px;
+    gap: 10px;
+  }
+  .logo {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  nav ul {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .icons img {
+    width: 20px;
+    margin-left: 10px;
+  }
+  .produto-detalhes {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .galeria {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+  }
+  .galeria img {
+    width: 70px;
+    height: auto;
+  }
+  .imagem-principal img {
+    width: 97vw;
+    min-width: 0;
+    padding: 0;
+    border-radius: 12px;
+  }
+  .info-produto {
+    gap: 7px;
+    padding: 8px 0;
+  }
+  .info-produto h2 {
+    font-size: 17px;
+  }
+  .preco {
+    font-size: 17px;
+  }
+  .parcelamento {
+    font-size: 13px;
+  }
+  .descricao {
+    font-size: 14px;
+  }
+  .acoes-produto {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .quantidade {
+    gap: 4px;
+  }
+  .quantidade button {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+  .btn-adicionar, .btn-favorito {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+  .input-frete {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .input-frete input {
+    width: 100%;
+    min-width: 0;
+    padding: 7px;
+    font-size: 14px;
+  }
+  .input-frete button {
+    width: 100%;
+    padding: 7px;
+    font-size: 15px;
+  }
+  .valor-frete {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+}
+
 </style>
