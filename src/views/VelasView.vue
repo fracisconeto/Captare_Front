@@ -13,18 +13,16 @@ const toastMessage = ref('')
 
 // --- FUNÇÃO PARA RESOLUÇÃO DE IMAGENS ---
 function getImageUrl(imageFileName, ext = 'png') {
-  const PRODUTOS_DIR = '/produtos' // acessa diretamente a pasta public/produtos
+  const PRODUTOS_DIR = '/produtos'
 
   if (!imageFileName) {
     return `${PRODUTOS_DIR}/vela1.png`
   }
 
-  // Se o nome já tiver extensão (ex: .jpg ou .png)
   if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
     return `${PRODUTOS_DIR}/${imageFileName}`
   }
 
-  // Adiciona a extensão padrão
   return `${PRODUTOS_DIR}/${imageFileName}.${ext}`
 }
 
@@ -65,7 +63,6 @@ const fecharToast = () => {
   showToast.value = false
 }
 
-// --- INICIALIZAÇÃO ---
 onMounted(() => {
   getVelas()
 })
@@ -157,18 +154,31 @@ onMounted(() => {
   border: #8cb3c6 1px solid;
 }
 
+/* ----------------------------- */
+/* 🔥 IMAGENS FIXAS E IGUAIS */
+/* ----------------------------- */
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
   border: #8cb3c6 1px solid;
   border-radius: 8px;
+
+  width: 100%;
+  height: 320px; /* 🔥 TAMANHO FIXO */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .container-img:hover {
   transform: scale(1.05);
 }
+
 .container-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover; /* 🔥 Preenche área sem distorcer */
   border-radius: 8px;
 }
 
@@ -177,6 +187,7 @@ onMounted(() => {
   margin: 20px 0;
   color: #8cb3c6;
 }
+
 .continer-texto h3 {
   font-size: 20px;
   color: #8cb3c6;
@@ -184,9 +195,11 @@ onMounted(() => {
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
 .continer-texto h3:hover {
   opacity: 0.8;
 }
+
 .continer-texto h2 {
   font-size: 22px;
   color: #8cb3c6;
@@ -199,6 +212,7 @@ onMounted(() => {
   gap: 12px;
   color: #8cb3c6;
 }
+
 .container-adicionar img {
   width: 28px;
   height: 28px;
@@ -215,15 +229,21 @@ onMounted(() => {
   border-radius: 6px;
   transition: all 0.2s ease-in-out;
 }
+
 .btn-adicionar:hover {
   background-color: #8cb3c6;
   color: white;
   border: 1px solid white;
 }
+
+/* ----------------------------- */
+/* 🔥 RESPONSIVO */
+/* ----------------------------- */
 @media (max-width: 1024px) {
   .velas-container {
     padding: 24px 8vw;
   }
+
   .grid-velas {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
@@ -235,39 +255,50 @@ onMounted(() => {
   .velas-container {
     padding: 10px 2vw;
   }
+
   .titulo {
     gap: 10px;
     margin-bottom: 26px;
   }
+
   .titulo h1 {
     font-size: 22px;
   }
+
   .titulo img {
     width: 34px;
     height: 34px;
   }
+
   .grid-velas {
     grid-template-columns: 1fr;
     gap: 18px;
     max-width: 99vw;
   }
+
   .box-vela {
     padding: 10px;
     border-radius: 8px;
   }
+
+  /* 🔥 Imagens fixas no mobile também */
+  .container-img {
+    height: 260px;
+  }
+
   .container-img img {
-    max-width: 96vw;
     border-radius: 6px;
   }
+
   .continer-texto h3,
   .continer-texto h2 {
     font-size: 16px;
     margin: 6px 0;
   }
+
   .btn-adicionar {
     font-size: 14px;
     padding: 10px 14vw;
   }
 }
-
 </style>

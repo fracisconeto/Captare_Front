@@ -5,7 +5,6 @@ import { useCarrinhoStore } from '@/stores/carrinho'
 import ToastNotification from '@/components/ToastNotification.vue'
 import RodaView from '../components/RodaView.vue'
 
-
 const carrinhoStore = useCarrinhoStore()
 const produtos = ref([])
 const showToast = ref(false)
@@ -13,13 +12,12 @@ const toastMessage = ref('')
 
 // --- FUNÇÃO PARA RESOLUÇÃO DINÂMICA DE IMAGENS ---
 function getImageUrl(imageFileName, ext = 'png') {
-  const PRODUTOS_DIR = '/produtos' // 👈 acessa direto a pasta public/produtos
+  const PRODUTOS_DIR = '/produtos'
 
   if (!imageFileName) {
     return `${PRODUTOS_DIR}/vela1.png`
   }
 
-  // Se já tiver extensão (ex: .jpg ou .png)
   if (/\.[a-zA-Z0-9]+$/.test(imageFileName)) {
     return `${PRODUTOS_DIR}/${imageFileName}`
   }
@@ -27,10 +25,7 @@ function getImageUrl(imageFileName, ext = 'png') {
   return `${PRODUTOS_DIR}/${imageFileName}.${ext}`
 }
 
-// ----------------------------------------------------
-
 const getHidratantes = async () => {
-  // Filtrando pela categoria_id = 2 (Hidratantes) E limitando a 8 itens
   const { data, error } = await supabase
     .from('core_produto')
     .select('*')
@@ -67,7 +62,6 @@ const fecharToast = () => {
 onMounted(() => {
   getHidratantes()
 })
-
 </script>
 
 <template>
@@ -111,22 +105,25 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
 }
+
 .titulo {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 48px;
 }
+
 .titulo img {
   width: 40px;
   height: 40px;
-  color: #8cb3c6;
 }
+
 .titulo h1 {
   font-size: 36px;
   color: #8cb3c6;
   font-weight: 600;
 }
+
 .grid-velas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -134,6 +131,7 @@ onMounted(() => {
   width: 100%;
   max-width: 1400px;
 }
+
 .box-vela {
   background-color: #ffffff;
   padding: 24px;
@@ -144,25 +142,39 @@ onMounted(() => {
   box-shadow: 0 2px 6px rgba(140, 179, 198, 0.3);
   border: #8cb3c6 1px solid;
 }
+
+/* 🔥 IMAGENS PADRONIZADAS (AGORA MAIS ALTAS) */
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
   border: #8cb3c6 1px solid;
   border-radius: 8px;
+
+  width: 100%;
+  height: 320px; /* AUMENTADO AQUI 🔥 */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .container-img:hover {
   transform: scale(1.05);
 }
+
 .container-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover; /* mantém proporção e preenche a área */
   border-radius: 8px;
 }
+
 .continer-texto {
   text-align: center;
   margin: 20px 0;
   color: #8cb3c6;
 }
+
 .continer-texto h3 {
   font-size: 20px;
   color: #8cb3c6;
@@ -170,23 +182,28 @@ onMounted(() => {
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
 .continer-texto h3:hover {
   opacity: 0.8;
 }
+
 .continer-texto h2 {
   font-size: 22px;
   color: #8cb3c6;
   margin: 0;
 }
+
 .container-adicionar {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .container-adicionar img {
   width: 28px;
   height: 28px;
 }
+
 .btn-adicionar {
   background-color: #fff;
   color: #8cb3c6;
@@ -198,11 +215,14 @@ onMounted(() => {
   border-radius: 6px;
   transition: all 0.2s ease-in-out;
 }
+
 .btn-adicionar:hover {
   background-color: #8cb3c6;
   color: white;
   border: 1px solid white;
 }
+
+/* ---------- RESPONSIVIDADE ---------- */
 @media (max-width: 1024px) {
   .velas-container {
     padding: 20px 4vw;
@@ -218,39 +238,48 @@ onMounted(() => {
   .velas-container {
     padding: 4vw 1vw;
   }
+
   .titulo {
     gap: 8px;
     margin-bottom: 24px;
   }
+
   .titulo h1 {
     font-size: 22px;
   }
+
   .titulo img {
     width: 32px;
     height: 32px;
   }
+
   .grid-velas {
     grid-template-columns: 1fr;
     gap: 12px;
     max-width: 99vw;
   }
+
   .box-vela {
     padding: 10px;
     border-radius: 8px;
   }
+
+  .container-img {
+    height: 260px; /* aumentado no mobile também 🔥 */
+  }
+
   .container-img img {
-    max-width: 97vw;
     border-radius: 6px;
   }
+
   .continer-texto h3,
   .continer-texto h2 {
     font-size: 15px;
-    margin: 6px 0;
   }
+
   .btn-adicionar {
     font-size: 14px;
     padding: 9px 9vw;
   }
 }
-
 </style>

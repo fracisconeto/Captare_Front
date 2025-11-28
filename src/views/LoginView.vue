@@ -24,7 +24,6 @@ const login = async () => {
   try {
     await authStore.login(email.value, senha.value)
 
-    // Verifica se o login foi bem-sucedido checando se o token existe
     if (authStore.token) {
       router.push('/')
     } else {
@@ -41,31 +40,32 @@ const login = async () => {
 <template>
   <div class="login-page">
     <div class="login-container">
-      <!-- Texto de boas-vindas -->
       <div class="welcome">
         <h1>Seja bem-vindo</h1>
         <img src="../assets/macho.png" alt="Usuário" class="welcome-icon" />
       </div>
 
-      <!-- Card de login -->
       <div class="login-box">
         <h2>Faça seu login</h2>
 
-        <!-- Mensagem de erro -->
         <div v-if="erro" class="erro-msg">{{ erro }}</div>
 
         <input type="email" v-model="email" placeholder="E-mail" />
         <input type="password" v-model="senha" placeholder="Senha" />
 
+        <!-- Botão principal -->
         <button class="btn-login" @click="login" :disabled="loading">
           {{ loading ? 'Entrando...' : 'Login' }}
         </button>
-        <RouterLink to="/cadastro">
-          <button class="btn-secondary">Não tenho cadastro</button>
+
+        <!-- Botão de cadastro com mesmo estilo -->
+        <RouterLink to="/cadastro" class="btn-login">
+          Não tenho cadastro
         </RouterLink>
       </div>
     </div>
   </div>
+
   <hr />
   <RodaView />
 </template>
@@ -83,6 +83,8 @@ const login = async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .welcome {
@@ -102,7 +104,7 @@ const login = async () => {
 .welcome-icon {
   width: 28px;
   height: 28px;
-  filter: brightness(0) invert(1); /* deixa o ícone branco */
+  filter: brightness(0) invert(1);
 }
 
 .login-box {
@@ -112,6 +114,9 @@ const login = async () => {
   width: 360px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .login-box h2 {
@@ -148,33 +153,21 @@ const login = async () => {
   transform: translateY(-2px);
 }
 
-/* Garante que RouterLink (que é <a>) não fique azul ou sublinhado */
-.login-box a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-/* Botões */
-.btn-login,
-.btn-secondary {
-  width: 70%;
-  margin: 0 auto 12px;
-  display: block;
+/* Botões iguais */
+.btn-login {
+  width: 100%;
   padding: 12px;
   border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
   font-weight: 600;
-}
-
-/* Botão principal */
-.btn-login {
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  display: block;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
   background: #5d7c87;
   color: white;
-  border: none;
-  font-size: 17px;
   box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
 }
 
@@ -188,25 +181,5 @@ const login = async () => {
   background: #a0b5bd;
   cursor: not-allowed;
   opacity: 0.7;
-}
-
-.btn-login:disabled:hover {
-  transform: none;
-  box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
-}
-
-/* Botão secundário */
-.btn-secondary {
-  background: #dce7ec;
-  color: #444;
-  border: none;
-  font-size: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-secondary:hover {
-  background: #c7d6dc;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 </style>
