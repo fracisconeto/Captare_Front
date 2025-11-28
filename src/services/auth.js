@@ -1,9 +1,10 @@
+
 import api from '../plugins/axios'
 
 export default class AuthService {
   async login(email, password) {
     try {
-      const response = await api.post('/token/', { email, password })
+      const response = await api.post('/login/', { email, password })
       return response.data
     } catch (err) {
       console.error('Login error:', err)
@@ -21,10 +22,10 @@ export default class AuthService {
     }
   }
 
-  async me(token){
+  async me(token) {
     try {
       const response = await api.get('/usuario/me', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       })
       return response.data
     } catch (err) {

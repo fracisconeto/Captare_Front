@@ -8,7 +8,8 @@ export const useAuthStore = defineStore('auth', {
     token: useStorage('auth-token', null),
   }),
 
-  actions: {
+  actions: 
+  {
     async login(email, password) {
       try {
         const authService = new AuthService()
