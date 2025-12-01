@@ -42,7 +42,7 @@ const login = async () => {
     <div class="login-container">
       <div class="welcome">
         <h1>Seja bem-vindo</h1>
-        <img src="../assets/macho.png" alt="Usuário" class="welcome-icon" />
+        <img src="../assets/user.png" alt="user" class="welcome-icon" />
       </div>
 
       <div class="login-box">
@@ -76,7 +76,7 @@ const login = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8cb3c6;
+  background-color: #ffff;
 }
 
 .login-container {
@@ -98,7 +98,7 @@ const login = async () => {
 .welcome h1 {
   font-size: 26px;
   font-weight: 600;
-  color: white;
+  color: #8CB3C6;
 }
 
 .welcome-icon {
@@ -108,7 +108,7 @@ const login = async () => {
 }
 
 .login-box {
-  background: #fff;
+  background: #8CB3C6;
   padding: 40px;
   border-radius: 16px;
   width: 360px;
@@ -122,7 +122,7 @@ const login = async () => {
 .login-box h2 {
   margin-bottom: 25px;
   font-size: 22px;
-  color: #1f2d3d;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -166,8 +166,8 @@ const login = async () => {
   display: block;
   margin-bottom: 12px;
   transition: all 0.3s ease;
-  background: #5d7c87;
-  color: white;
+  background: #fff;
+  color: #8CB3C6;
   box-shadow: 0 2px 8px rgba(93, 124, 135, 0.3);
 }
 

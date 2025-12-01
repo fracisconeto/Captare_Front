@@ -104,11 +104,11 @@ function handleSubmit() {
   justify-content: center;
   align-items: center;
   min-height: 85vh;
-  background-color: #8cb3c6;
+  background-color: #ffff;
 }
 
 .page-title {
-  color: white;
+  color: #8CB3C6;
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -116,7 +116,7 @@ function handleSubmit() {
 }
 
 .card {
-  background: white;
+  background: #8CB3C6;
   padding: 2.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -129,7 +129,7 @@ function handleSubmit() {
   margin-bottom: 2rem;
   font-size: 26px;
   font-weight: 700;
-  color: #333;
+  color: #ffff  ;
 }
 
 .form {
@@ -149,7 +149,7 @@ input {
   width: 90%;
   max-width: 400px;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #8CB3C6;
   border-radius: 10px;
   font-size: 15px;
   outline: none;
@@ -157,8 +157,8 @@ input {
 }
 
 input:focus {
-  border-color: #8cb3c6;
-  box-shadow: 0 0 8px rgba(140, 179, 198, 0.4);
+  border-color: #fff;
+  box-shadow: 0 0 8px #8CB3C6(140, 179, 198, 0.4);
   transform: translateY(-2px);
 }
 

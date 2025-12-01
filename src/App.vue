@@ -25,9 +25,7 @@ const estaLogado = computed(() => !!authStore.token)
       <div class="nav-content">
       <!-- Ícones à esquerda -->
       <div class="links2">
-        <RouterLink to="/">
-          <img src="../src/assets/coraçaoazul.png" alt="favoritos" />
-        </RouterLink>
+
         <RouterLink to="/carrinho">
           <img src="../src/assets/bolsa.png" alt="carrinho" />
         </RouterLink>
@@ -73,7 +71,7 @@ nav {
   align-items: center;      /* centraliza logo e links */
   gap: 8px;
   margin: 0 auto;           /* centraliza a coluna dentro da nav */
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .logo-nav img {

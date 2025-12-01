@@ -110,11 +110,12 @@ function handleSubmit() {
   justify-content: center;
   align-items: center;
   min-height: 85vh;
-  background-color: #8cb3c6;
+  background-color: #ffff
+  ;
 }
 
 .page-title {
-  color: white;
+  color: #8CB3C6;
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -122,7 +123,7 @@ function handleSubmit() {
 }
 
 .card {
-  background: white;
+  background: #8CB3C6;
   padding: 2.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -135,7 +136,7 @@ function handleSubmit() {
   margin-bottom: 2rem;
   font-size: 26px;
   font-weight: 700;
-  color: #333;
+  color: #ffff  ;
 }
 
 .form {
@@ -155,7 +156,7 @@ input {
   width: 90%;
   max-width: 400px;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #8CB3C6;
   border-radius: 10px;
   font-size: 15px;
   outline: none;
@@ -186,31 +187,33 @@ button {
   font-size: 17px;
   font-weight: 700;
   cursor: pointer;
-  color: white;
+  color: #8CB3C6;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 /* Voltar */
 .btn-secondary {
-  color: #0d4561;
-  background: #8cb3c6;
+  color: #8CB3C6;
+  background: #fff;
 }
 
 .btn-secondary:hover {
   background: #7498a9;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(140, 179, 198, 0.4);
+  box-shadow: 0 4px 14px #8CB3C6(140, 179, 198, 0.4);
+  color: #fff;
 }
 
 .btn-primary {
-  background: #0d4561;
+  background: #ffff;
 }
 
 .btn-primary:hover {
-  background: #0a364d;
+  background: #8CB3C6;
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(13, 69, 97, 0.4);
+  color: #fff;
 }
 
 .error {

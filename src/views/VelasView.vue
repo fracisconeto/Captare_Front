@@ -89,7 +89,7 @@ onMounted(() => {
         </div>
 
         <div class="container-adicionar">
-          <img src="../assets/coraçaoazul.png" alt="favoritar" />
+         
           <button class="btn-adicionar" @click.stop="adicionarAoCarrinho(produto)">
             Adicionar
           </button>
@@ -210,6 +210,8 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   color: #8cb3c6;
+  border: #8CB3C6 2px solid;
+  border-radius: 7px;
 }
 
 .container-adicionar img {

@@ -81,7 +81,7 @@ onMounted(() => {
           <h2>R$ {{ produto.preco }}</h2>
         </div>
         <div class="container-adicionar">
-          <img src="../assets/coraçaoazul.png" alt="favoritar" />
+         
           <button class="btn-adicionar" @click="adicionarAoCarrinho(produto)">Adicionar</button>
         </div>
       </div>
@@ -196,6 +196,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
+  border: #8CB3C6 3px solid;
+  border-radius: 7px;
 }
 
 .container-adicionar img {
@@ -218,7 +220,7 @@ onMounted(() => {
 .btn-adicionar:hover {
   background-color: #8cb3c6;
   color: white;
-  border: 1px solid white;
+  border: 1px solid #8CB3C6;
 }
 
 /* RESPONSIVIDADE */

@@ -217,11 +217,12 @@ function diminuirQuantidade(index) {
 /* ====== Botão de finalizar ====== */
 .botao-finalizar {
   margin-top: 25px;
-  background-color: #8cb3c6;
-  color: white;
+  background-color: #fff;
+  color: #8CB3C6;
   border: none;
   padding: 14px 40px;
   border-radius: 10px;
+  border: 2px solid #8CB3C6;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
@@ -230,9 +231,10 @@ function diminuirQuantidade(index) {
 }
 
 .botao-finalizar:hover {
-  background-color: #7aa2b5;
+  background-color: #8CB3C6;
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(140, 179, 198, 0.4);
+  color: #fff;
 }
 
 /* ====== Rodapé ====== */
