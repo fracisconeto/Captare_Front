@@ -143,15 +143,14 @@ onMounted(() => {
   border: #8cb3c6 1px solid;
 }
 
-/* 🔥 IMAGENS PADRONIZADAS (AGORA MAIS ALTAS) */
+/*  IMAGENS PADRONIZADAS (AGORA MAIS ALTAS) */
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: #8cb3c6 1px solid;
   border-radius: 8px;
 
   width: 100%;
-  height: 320px; /* AUMENTADO AQUI 🔥 */
+  height: 320px; /* AUMENTADO AQUI */
   overflow: hidden;
   display: flex;
   justify-content: center;

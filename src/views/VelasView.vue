@@ -155,16 +155,15 @@ onMounted(() => {
 }
 
 /* ----------------------------- */
-/* 🔥 IMAGENS FIXAS E IGUAIS */
+/*  IMAGENS FIXAS E IGUAIS */
 /* ----------------------------- */
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: #8cb3c6 1px solid;
   border-radius: 8px;
 
   width: 100%;
-  height: 320px; /* 🔥 TAMANHO FIXO */
+  height: 320px; /*  TAMANHO FIXO */
   overflow: hidden;
   display: flex;
   justify-content: center;

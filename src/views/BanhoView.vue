@@ -143,15 +143,14 @@ onMounted(() => {
   border: #8cb3c6 1px solid;
 }
 
-/* 🔥 IMAGEM MAIOR AQUI */
+/*  IMAGEM MAIOR AQUI */
 .container-img {
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: #8cb3c6 1px solid;
   border-radius: 8px;
 
   width: 100%;
-  height: 320px; /* AUMENTADO 🔥 */
+  height: 320px; /* AUMENTADO  */
   overflow: hidden;
   display: flex;
   justify-content: center;
